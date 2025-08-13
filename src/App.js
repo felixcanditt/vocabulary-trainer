@@ -3,6 +3,7 @@ import './App.css';
 import VocabularyForm from './components/VocabularyForm';
 
 function App() {
+  console.log(1);
   return (
     <div className="App">
       <header>
