@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function VocabularyForm() {
+export default function VocabularyForm({ onAddToVocabularyList }) {
   const [userInput, setUserInput] = useState({ frontText: '', backText: '' });
   console.log(userInput);
 
@@ -13,7 +13,7 @@ export default function VocabularyForm() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(1);
+    onAddToVocabularyList((prevList) => [...prevList, userInput]);
   }
 
   return (
