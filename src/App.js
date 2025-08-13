@@ -1,12 +1,16 @@
 import './App.css';
 
+import VocabularyForm from './components/VocabularyForm';
+
 function App() {
   return (
     <div className="App">
       <header>
         <h1>Vocabulary Trainer</h1>
       </header>
-      <main>add new item</main>
+      <main>
+        <VocabularyForm />
+      </main>
     </div>
   );
 }
