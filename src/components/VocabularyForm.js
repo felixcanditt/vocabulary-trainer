@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function VocabularyForm({ onAddToVocabularyList }) {
   const [userInput, setUserInput] = useState({ frontText: '', backText: '' });
@@ -13,7 +14,10 @@ export default function VocabularyForm({ onAddToVocabularyList }) {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    onAddToVocabularyList((prevList) => [...prevList, userInput]);
+    onAddToVocabularyList((prevList) => [
+      ...prevList,
+      { ...userInput, id: uuidv4() },
+    ]);
   }
 
   return (

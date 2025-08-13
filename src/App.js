@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.css';
 
 import VocabularyForm from './components/VocabularyForm';
+import VocabularyList from './components/VocabularyList';
 
 function App() {
   const [vocabularyList, addToVocabularyList] = useState([]);
@@ -16,6 +17,7 @@ function App() {
       </header>
       <main>
         <VocabularyForm onAddToVocabularyList={addToVocabularyList} />
+        <VocabularyList vocabularyList={vocabularyList} />
       </main>
     </div>
   );
