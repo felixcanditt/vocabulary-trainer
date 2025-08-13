@@ -3,7 +3,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <header>
+        <h1>Vocabulary Trainer</h1>
+      </header>
+      <main>add new item</main>
     </div>
   );
 }
