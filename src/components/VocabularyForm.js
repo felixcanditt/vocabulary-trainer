@@ -2,11 +2,12 @@ import { useState } from 'react';
 
 export default function VocabularyForm() {
   const [userInput, setUserInput] = useState({ frontText: '', backText: '' });
+  console.log(userInput);
 
   function handleUserInput(event) {
     setUserInput((prevInput) => ({
       ...prevInput,
-      frontText: event.target.value,
+      [event.target.name]: event.target.value,
     }));
   }
 
@@ -21,11 +22,18 @@ export default function VocabularyForm() {
       <input
         type="text"
         id="front-text"
+        name="frontText"
         onChange={handleUserInput}
         value={userInput.frontText}
       ></input>
       <label htmlFor="back-text">Back</label>
-      <input type="text" id="back-text"></input>
+      <input
+        type="text"
+        id="back-text"
+        name="backText"
+        onChange={handleUserInput}
+        value={userInput.backText}
+      ></input>
       <button>save</button>
     </form>
   );
