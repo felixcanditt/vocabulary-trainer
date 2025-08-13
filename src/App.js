@@ -8,8 +8,6 @@ import VocabularyList from './components/VocabularyList';
 function App() {
   const [vocabularyList, addToVocabularyList] = useState([]);
 
-  console.log(vocabularyList);
-
   return (
     <div className="App">
       <header>

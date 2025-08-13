@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+const initialUserInput = { frontText: '', backText: '' };
+
 export default function VocabularyForm({ onAddToVocabularyList }) {
-  const [userInput, setUserInput] = useState({ frontText: '', backText: '' });
-  console.log(userInput);
+  const [userInput, setUserInput] = useState(initialUserInput);
 
   function handleUserInput(event) {
     setUserInput((prevInput) => ({
@@ -18,6 +19,7 @@ export default function VocabularyForm({ onAddToVocabularyList }) {
       ...prevList,
       { ...userInput, id: uuidv4() },
     ]);
+    setUserInput(initialUserInput);
   }
 
   return (
@@ -29,7 +31,7 @@ export default function VocabularyForm({ onAddToVocabularyList }) {
         name="frontText"
         onChange={handleUserInput}
         value={userInput.frontText}
-      ></input>
+      />
       <label htmlFor="back-text">Back</label>
       <input
         type="text"
@@ -37,7 +39,7 @@ export default function VocabularyForm({ onAddToVocabularyList }) {
         name="backText"
         onChange={handleUserInput}
         value={userInput.backText}
-      ></input>
+      />
       <button>save</button>
     </form>
   );
