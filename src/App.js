@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+
 import './App.css';
 
+import VocabularyForm from './components/VocabularyForm';
+import VocabularyList from './components/VocabularyList';
+
 function App() {
+  const [vocabularyList, addToVocabularyList] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Vocabulary Trainer</h1>
       </header>
+      <main>
+        <VocabularyForm onAddToVocabularyList={addToVocabularyList} />
+        <VocabularyList vocabularyList={vocabularyList} />
+      </main>
     </div>
   );
 }
