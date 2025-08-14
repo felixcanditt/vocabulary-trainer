@@ -6,7 +6,11 @@ import VocabularyForm from './components/VocabularyForm';
 import VocabularyList from './components/VocabularyList';
 
 function App() {
-  const [vocabularyList, addToVocabularyList] = useState([]);
+  const [vocabularyList, setVocabularyList] = useState([]);
+
+  function addToVocabularyList(newItem) {
+    setVocabularyList((prevList) => [...prevList, newItem]);
+  }
 
   return (
     <div className="App">

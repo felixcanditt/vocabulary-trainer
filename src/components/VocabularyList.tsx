@@ -1,4 +1,4 @@
-interface VocabularyItem {
+export interface VocabularyItem {
   frontText: string;
   backText: string;
   id: string;

@@ -1,24 +1,26 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+import { VocabularyItem } from './VocabularyList';
+
 const initialUserInput = { frontText: '', backText: '' };
 
-export default function VocabularyForm({ onAddToVocabularyList }) {
+const VocabularyForm: React.FC<{
+  onAddToVocabularyList: (item: VocabularyItem) => void;
+}> = (props) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
-  function handleUserInput(event) {
+  function handleUserInput(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInput((prevInput) => ({
       ...prevInput,
       [event.target.name]: event.target.value,
     }));
   }
 
-  function handleFormSubmit(event) {
+  function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
-    onAddToVocabularyList((prevList) => [
-      ...prevList,
-      { ...userInput, id: uuidv4() },
-    ]);
+    const newItem = { ...userInput, id: uuidv4() };
+    props.onAddToVocabularyList(newItem);
     setUserInput(initialUserInput);
   }
 
@@ -43,4 +45,6 @@ export default function VocabularyForm({ onAddToVocabularyList }) {
       <button>save</button>
     </form>
   );
-}
+};
+
+export default VocabularyForm;
