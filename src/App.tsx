@@ -5,10 +5,16 @@ import './App.css';
 import VocabularyForm from './components/VocabularyForm';
 import VocabularyList from './components/VocabularyList';
 
-function App() {
-  const [vocabularyList, setVocabularyList] = useState([]);
+export interface VocabularyItem {
+  frontText: string;
+  backText: string;
+  id: string;
+}
 
-  function addToVocabularyList(newItem) {
+function App() {
+  const [vocabularyList, setVocabularyList] = useState<VocabularyItem[]>([]);
+
+  function addToVocabularyList(newItem: VocabularyItem) {
     setVocabularyList((prevList) => [...prevList, newItem]);
   }
 

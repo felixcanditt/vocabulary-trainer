@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { VocabularyItem } from './VocabularyList';
+import { VocabularyItem } from '../App';
+
+interface UserInput {
+  frontText: string;
+  backText: string;
+}
 
 const initialUserInput = { frontText: '', backText: '' };
 
 const VocabularyForm: React.FC<{
   onAddToVocabularyList: (item: VocabularyItem) => void;
 }> = (props) => {
-  const [userInput, setUserInput] = useState(initialUserInput);
+  const [userInput, setUserInput] = useState<UserInput>(initialUserInput);
 
   function handleUserInput(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInput((prevInput) => ({

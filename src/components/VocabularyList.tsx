@@ -1,8 +1,4 @@
-export interface VocabularyItem {
-  frontText: string;
-  backText: string;
-  id: string;
-}
+import { VocabularyItem } from '../App';
 
 const VocabularyList: React.FC<{ vocabularyList: VocabularyItem[] }> = (
   props
