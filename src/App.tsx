@@ -4,6 +4,7 @@ import './App.css';
 
 import VocabularyForm from './components/VocabularyForm';
 import VocabularyList from './components/VocabularyList';
+import VocabularyTraining from './components/VocabularyTraining';
 
 export interface VocabularyItem {
   frontText: string;
@@ -26,6 +27,7 @@ function App() {
       <main>
         <VocabularyForm onAddToVocabularyList={addToVocabularyList} />
         <VocabularyList vocabularyList={vocabularyList} />
+        <VocabularyTraining vocabularyList={vocabularyList} />
       </main>
     </div>
   );
