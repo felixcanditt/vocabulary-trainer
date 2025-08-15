@@ -4,13 +4,16 @@ const VocabularyList: React.FC<{ vocabularyList: VocabularyItem[] }> = (
   props
 ) => {
   return (
-    <ul>
-      {props.vocabularyList.map((item) => (
-        <li key={item.id}>
-          {item.frontText}, {item.backText}
-        </li>
-      ))}
-    </ul>
+    <>
+      <h2>list</h2>
+      <ul>
+        {props.vocabularyList.map((item) => (
+          <li key={item.id}>
+            {item.frontText}, {item.backText}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 
