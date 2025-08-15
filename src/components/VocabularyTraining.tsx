@@ -5,7 +5,7 @@ import { VocabularyItem } from '../App';
 const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
   props
 ) => {
-  const [counter, setCounter] = useState(0);
+  const [index, setIndex] = useState(0);
 
   // const myArray = [
   //   {
@@ -25,29 +25,31 @@ const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
   //   },
   // ];
 
-  let showNext = true;
+  let hasItemForReview: boolean;
 
   if (
     props.vocabularyList.length === 0 ||
-    counter === props.vocabularyList.length
+    index === props.vocabularyList.length
   ) {
-    showNext = false;
+    hasItemForReview = false;
+  } else {
+    hasItemForReview = true;
   }
 
   function showNextItem() {
-    setCounter((prevCounter) => prevCounter + 1);
+    setIndex((prevIndex) => prevIndex + 1);
   }
 
   return (
     <>
       <h2>training</h2>
-      {showNext && (
+      {hasItemForReview && (
         <div onClick={showNextItem} style={{ border: '1px solid black' }}>
-          <p>{props.vocabularyList[counter].frontText}</p>
-          <p>{props.vocabularyList[counter].backText}</p>
+          <p>{props.vocabularyList[index].frontText}</p>
+          <p>{props.vocabularyList[index].backText}</p>
         </div>
       )}
-      {!showNext && <div>done</div>}
+      {!hasItemForReview && <div>done</div>}
     </>
   );
 };
