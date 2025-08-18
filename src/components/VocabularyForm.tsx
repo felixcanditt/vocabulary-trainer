@@ -24,7 +24,7 @@ const VocabularyForm: React.FC<{
 
   function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const newItem = { ...userInput, id: uuidv4() };
+    const newItem = { ...userInput, currentStaple: 1, id: uuidv4() };
     props.onAddToVocabularyList(newItem);
     setUserInput(initialUserInput);
   }

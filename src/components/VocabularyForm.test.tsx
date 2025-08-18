@@ -22,6 +22,7 @@ describe('VocabularyForm', () => {
       expect.objectContaining<VocabularyItem>({
         frontText: 'Wurst',
         backText: 'Sausage',
+        currentStaple: 1,
         id: expect.any(String),
       })
     );

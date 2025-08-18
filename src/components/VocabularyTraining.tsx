@@ -2,24 +2,24 @@ import { useState } from 'react';
 
 import { VocabularyItem } from '../App';
 
-const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
-  props
-) => {
+const VocabularyTraining: React.FC<{
+  vocabularyList: VocabularyItem[];
+  onUpdateVocabularyList: (list: VocabularyItem[]) => void;
+}> = (props) => {
   const [index, setIndex] = useState(0);
   const [showBackText, setShowBackText] = useState(false);
   const [trainingsList, setTrainingsList] = useState<VocabularyItem[]>(
     props.vocabularyList
   );
-  const [newArray, setNewArray] = useState<VocabularyItem[]>([]);
+  // const [newArray, setNewArray] = useState<VocabularyItem[]>([]);
 
-  console.log('newArray', newArray, 'trainingsList', trainingsList);
+  // console.log('trainingsList', trainingsList);
 
   let hasItemForReview: boolean;
 
-  if (
-    props.vocabularyList.length === 0 ||
-    index === props.vocabularyList.length
-  ) {
+  if (props.vocabularyList.length === 0) {
+    hasItemForReview = false;
+  } else if (index === props.vocabularyList.length) {
     hasItemForReview = false;
   } else {
     hasItemForReview = true;
@@ -32,14 +32,18 @@ const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
   function handleSecondButtonClick(userRememberedItem: boolean) {
     if (userRememberedItem) {
       const myItem = props.vocabularyList[index];
-      setNewArray((prevArray) => [...prevArray, myItem]);
-      setTrainingsList((prevList) =>
-        prevList.filter((item) => item.id != myItem.id)
-      );
+      const newList = [...trainingsList];
+      newList[index].currentStaple = 2;
+      setTrainingsList(newList);
     }
 
-    setIndex((prevIndex) => prevIndex + 1);
-    setShowBackText(false);
+    if (index === props.vocabularyList.length - 1) {
+      console.log(1);
+      props.onUpdateVocabularyList(trainingsList);
+    } else {
+      setIndex((prevIndex) => prevIndex + 1);
+      setShowBackText(false);
+    }
   }
 
   return (

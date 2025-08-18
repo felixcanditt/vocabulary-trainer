@@ -11,6 +11,7 @@ import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 export interface VocabularyItem {
   frontText: string;
   backText: string;
+  currentStaple: number;
   id: string;
 }
 
@@ -23,8 +24,14 @@ function App() {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
   }, [vocabularyList]);
 
+  console.log(vocabularyList);
+
   function addToVocabularyList(newItem: VocabularyItem) {
     setVocabularyList((prevList) => [...prevList, newItem]);
+  }
+
+  function updateVocabularyList(updatedList: VocabularyItem[]) {
+    setVocabularyList(updatedList);
   }
 
   return (
@@ -35,7 +42,10 @@ function App() {
       <main>
         <VocabularyForm onAddToVocabularyList={addToVocabularyList} />
         <VocabularyList vocabularyList={vocabularyList} />
-        <VocabularyTraining vocabularyList={vocabularyList} />
+        <VocabularyTraining
+          vocabularyList={vocabularyList}
+          onUpdateVocabularyList={updateVocabularyList}
+        />
       </main>
     </div>
   );
