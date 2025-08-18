@@ -17,10 +17,13 @@ const VocabularyList: React.FC<{
   return (
     <>
       <h2>list</h2>
+
       <h3>staple 1</h3>
-      <button onClick={() => props.onHandleClickStaple(1)}>
-        Review Staple
-      </button>
+      {stapleOne.length > 0 && (
+        <button onClick={() => props.onHandleClickStaple(1)}>
+          Review Staple
+        </button>
+      )}
       <ul>
         {stapleOne.map((item) => (
           <li key={item.id}>
@@ -28,10 +31,13 @@ const VocabularyList: React.FC<{
           </li>
         ))}
       </ul>
+
       <h3>staple 2</h3>
-      <button onClick={() => props.onHandleClickStaple(2)}>
-        Review Staple
-      </button>
+      {stapleTwo.length > 0 && (
+        <button onClick={() => props.onHandleClickStaple(2)}>
+          Review Staple
+        </button>
+      )}
       <ul>
         {stapleTwo.map((item) => (
           <li key={item.id}>
@@ -39,10 +45,13 @@ const VocabularyList: React.FC<{
           </li>
         ))}
       </ul>
+
       <h3>staple 3</h3>
-      <button onClick={() => props.onHandleClickStaple(3)}>
-        Review Staple
-      </button>
+      {stapleThree.length > 0 && (
+        <button onClick={() => props.onHandleClickStaple(3)}>
+          Review Staple
+        </button>
+      )}
       <ul>
         {stapleThree.map((item) => (
           <li key={item.id}>

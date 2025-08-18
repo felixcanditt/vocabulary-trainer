@@ -39,6 +39,10 @@ function App() {
     setSelectedStaple(selectedStaple);
   }
 
+  function resetStaple() {
+    setSelectedStaple(0);
+  }
+
   return (
     <div className="App">
       <header>
@@ -52,6 +56,7 @@ function App() {
             selectedStaple={selectedStaple}
             vocabularyList={vocabularyList}
             onUpdateVocabularyList={updateVocabularyList}
+            onResetStaple={resetStaple}
           />
         )}
         <VocabularyList
