@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { VocabularyItem } from '../App';
 
 const VocabularyTraining: React.FC<{
+  selectedStaple: number;
   vocabularyList: VocabularyItem[];
   onUpdateVocabularyList: (list: VocabularyItem[]) => void;
 }> = (props) => {
@@ -14,6 +15,10 @@ const VocabularyTraining: React.FC<{
   // const [newArray, setNewArray] = useState<VocabularyItem[]>([]);
 
   // console.log('trainingsList', trainingsList);
+
+  const stapleForReview = props.vocabularyList.filter(
+    (item) => item.currentStaple === props.selectedStaple
+  );
 
   let hasItemForReview: boolean;
 
@@ -49,6 +54,11 @@ const VocabularyTraining: React.FC<{
   return (
     <>
       <h2>training</h2>
+      <div>
+        stapleForReview.length:
+        {stapleForReview.length}
+      </div>
+
       {hasItemForReview && (
         <div style={{ border: '1px solid black' }}>
           <p>{props.vocabularyList[index].frontText}</p>

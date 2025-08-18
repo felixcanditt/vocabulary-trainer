@@ -19,6 +19,7 @@ function App() {
   const [vocabularyList, setVocabularyList] = useState<VocabularyItem[]>(
     loadFromLocalStorage('vocabularyTrainerList') ?? []
   );
+  const [selectedStaple, setSelectedStaple] = useState(0);
 
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
@@ -34,6 +35,10 @@ function App() {
     setVocabularyList(updatedList);
   }
 
+  function handleClickStaple(selectedStaple: number) {
+    setSelectedStaple(selectedStaple);
+  }
+
   return (
     <div className="App">
       <header>
@@ -41,10 +46,17 @@ function App() {
       </header>
       <main>
         <VocabularyForm onAddToVocabularyList={addToVocabularyList} />
-        <VocabularyList vocabularyList={vocabularyList} />
-        <VocabularyTraining
+        {selectedStaple}
+        {selectedStaple !== 0 && (
+          <VocabularyTraining
+            selectedStaple={selectedStaple}
+            vocabularyList={vocabularyList}
+            onUpdateVocabularyList={updateVocabularyList}
+          />
+        )}
+        <VocabularyList
           vocabularyList={vocabularyList}
-          onUpdateVocabularyList={updateVocabularyList}
+          onHandleClickStaple={handleClickStaple}
         />
       </main>
     </div>
