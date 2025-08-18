@@ -7,6 +7,12 @@ const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
 ) => {
   const [index, setIndex] = useState(0);
   const [showBackText, setShowBackText] = useState(false);
+  const [trainingsList, setTrainingsList] = useState<VocabularyItem[]>(
+    props.vocabularyList
+  );
+  const [newArray, setNewArray] = useState<VocabularyItem[]>([]);
+
+  console.log('newArray', newArray, 'trainingsList', trainingsList);
 
   let hasItemForReview: boolean;
 
@@ -25,6 +31,11 @@ const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
 
   function handleSecondButtonClick(userRememberedItem: boolean) {
     if (userRememberedItem) {
+      const myItem = props.vocabularyList[index];
+      setNewArray((prevArray) => [...prevArray, myItem]);
+      setTrainingsList((prevList) =>
+        prevList.filter((item) => item.id != myItem.id)
+      );
     }
 
     setIndex((prevIndex) => prevIndex + 1);
