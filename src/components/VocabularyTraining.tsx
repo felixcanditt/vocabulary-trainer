@@ -6,24 +6,7 @@ const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
   props
 ) => {
   const [index, setIndex] = useState(0);
-
-  // const myArray = [
-  //   {
-  //     backText: 'cheese',
-  //     frontText: 'käse',
-  //     id: '32c95dbb-df46-4b04-b32c-9244f673d692',
-  //   },
-  //   {
-  //     backText: 'brot',
-  //     frontText: 'bread',
-  //     id: '32c95dbb-df46-4b04-b32c-9244f673d699',
-  //   },
-  //   {
-  //     backText: 'honig',
-  //     frontText: 'honey',
-  //     id: '32c95dbb-df46-4b04-b32c-9244f673d698',
-  //   },
-  // ];
+  const [showBackText, setShowBackText] = useState(false);
 
   let hasItemForReview: boolean;
 
@@ -36,17 +19,38 @@ const VocabularyTraining: React.FC<{ vocabularyList: VocabularyItem[] }> = (
     hasItemForReview = true;
   }
 
-  function showNextItem() {
+  function handleFirstButtonClick() {
+    setShowBackText(true);
+  }
+
+  function handleSecondButtonClick(userRememberedItem: boolean) {
+    if (userRememberedItem) {
+    }
+
     setIndex((prevIndex) => prevIndex + 1);
+    setShowBackText(false);
   }
 
   return (
     <>
       <h2>training</h2>
       {hasItemForReview && (
-        <div onClick={showNextItem} style={{ border: '1px solid black' }}>
+        <div style={{ border: '1px solid black' }}>
           <p>{props.vocabularyList[index].frontText}</p>
-          <p>{props.vocabularyList[index].backText}</p>
+          {!showBackText && (
+            <button onClick={handleFirstButtonClick}>Show Translation</button>
+          )}
+          {showBackText && (
+            <>
+              <p>{props.vocabularyList[index].backText}</p>
+              <button onClick={() => handleSecondButtonClick(true)}>
+                I knew
+              </button>
+              <button onClick={() => handleSecondButtonClick(false)}>
+                I didn't know
+              </button>
+            </>
+          )}
         </div>
       )}
       {!hasItemForReview && <div>done</div>}
