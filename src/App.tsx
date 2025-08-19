@@ -25,8 +25,6 @@ function App() {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
   }, [vocabularyList]);
 
-  console.log(vocabularyList);
-
   function addToVocabularyList(newItem: VocabularyItem) {
     setVocabularyList((prevList) => [...prevList, newItem]);
   }

@@ -15,8 +15,6 @@ const VocabularyTraining: React.FC<{
     (item) => item.currentStaple === props.selectedStaple
   );
 
-  console.log(stapleForReview);
-
   const [trainingsList, setTrainingsList] = useState(props.vocabularyList);
 
   function handleFirstButtonClick() {
@@ -27,37 +25,36 @@ const VocabularyTraining: React.FC<{
     clickedItem: VocabularyItem,
     userRememberedItem: boolean
   ) {
+    let newStaple: number;
+
     if (
       userRememberedItem &&
       (props.selectedStaple === 1 || props.selectedStaple === 2)
     ) {
-      const newStaple = props.selectedStaple + 1;
-      const newList = trainingsList.map((item, i) => {
-        if (item.id === clickedItem.id) {
-          console.log(newStaple);
-          const newItem = {
-            ...item,
-            currentStaple: newStaple,
-          };
-          console.log(newItem);
-
-          return newItem;
-        } else {
-          return item;
-        }
-      });
-      console.log(newList);
-
-      if (index === stapleForReview.length - 1) {
-        console.log(newList);
-        props.onUpdateVocabularyList(newList);
-        props.onResetStaple();
-        return;
-      }
-
-      setTrainingsList(newList);
+      newStaple = props.selectedStaple + 1;
+    } else {
+      newStaple = props.selectedStaple;
     }
 
+    const newList = trainingsList.map((item) => {
+      if (item.id === clickedItem.id) {
+        const newItem = {
+          ...item,
+          currentStaple: newStaple,
+        };
+        return newItem;
+      } else {
+        return item;
+      }
+    });
+
+    if (index === stapleForReview.length - 1) {
+      props.onUpdateVocabularyList(newList);
+      props.onResetStaple();
+      return;
+    }
+
+    setTrainingsList(newList);
     setIndex((prevIndex) => prevIndex + 1);
     setShowBackText(false);
   }
