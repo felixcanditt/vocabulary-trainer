@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 import VocabularyForm from './components/VocabularyForm';
-import VocabularyList from './components/VocabularyLists';
+import VocabularyLists from './components/VocabularyLists';
 import VocabularyTraining from './components/VocabularyTraining';
 
 import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
@@ -52,7 +52,7 @@ function App() {
             onSelectStaple={selectStaple}
           />
         )}
-        <VocabularyList
+        <VocabularyLists
           vocabularyList={vocabularyList}
           onSelectStaple={selectStaple}
         />

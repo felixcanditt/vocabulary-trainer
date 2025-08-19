@@ -26,16 +26,10 @@ const VocabularyTraining: React.FC<{
     clickedItem: VocabularyItem,
     userRememberedItem: boolean
   ) {
-    let newStaple: number;
-
-    if (
-      userRememberedItem &&
-      (clickedItem.currentStaple === 1 || clickedItem.currentStaple === 2)
-    ) {
-      newStaple = clickedItem.currentStaple + 1;
-    } else {
-      newStaple = clickedItem.currentStaple;
-    }
+    const newStaple =
+      userRememberedItem && clickedItem.currentStaple < 3
+        ? clickedItem.currentStaple + 1
+        : clickedItem.currentStaple;
 
     const newList = trainingsResults.map((item) => {
       if (item.id === clickedItem.id) {
