@@ -10,12 +10,11 @@ const VocabularyTraining: React.FC<{
 }> = (props) => {
   const [index, setIndex] = useState(0);
   const [showBackText, setShowBackText] = useState(false);
-  const [trainingsResults, setTrainingsResults] = useState(
-    props.vocabularyList
-  );
 
-  const stapleForTraining = props.vocabularyList.filter(
-    (item) => item.currentStaple === props.selectedStaple
+  const [trainingStaple, setTrainingStaple] = useState(() =>
+    props.vocabularyList.filter(
+      (item) => item.currentStaple === props.selectedStaple
+    )
   );
 
   function handleFirstButtonClick() {
@@ -26,30 +25,29 @@ const VocabularyTraining: React.FC<{
     clickedItem: VocabularyItem,
     userRememberedItem: boolean
   ) {
-    const newStaple =
-      userRememberedItem && clickedItem.currentStaple < 3
-        ? clickedItem.currentStaple + 1
-        : clickedItem.currentStaple;
-
-    const newList = trainingsResults.map((item) => {
-      if (item.id === clickedItem.id) {
-        const newItem = {
-          ...item,
-          currentStaple: newStaple,
-        };
-        return newItem;
+    const updatedTrainingStaple = trainingStaple.map((item) => {
+      if (
+        item.id === clickedItem.id &&
+        userRememberedItem &&
+        item.currentStaple < 3
+      ) {
+        return { ...item, currentStaple: item.currentStaple + 1 };
       } else {
         return item;
       }
     });
 
-    if (index === stapleForTraining.length - 1) {
-      props.onUpdateVocabularyList(newList);
+    if (index === trainingStaple.length - 1) {
+      const updatedVocabularyList = props.vocabularyList.map((item) => {
+        const updatedItem = updatedTrainingStaple.find((i) => i.id === item.id);
+        return updatedItem ? updatedItem : item;
+      });
+      props.onUpdateVocabularyList(updatedVocabularyList);
       props.onSelectStaple(0);
       return;
     }
 
-    setTrainingsResults(newList);
+    setTrainingStaple(updatedTrainingStaple);
     setIndex((prevIndex) => prevIndex + 1);
     setShowBackText(false);
   }
@@ -58,23 +56,23 @@ const VocabularyTraining: React.FC<{
     <>
       <h2>training</h2>
       <div style={{ border: '1px solid black' }}>
-        <p>{stapleForTraining[index].frontText}</p>
+        <p>{trainingStaple[index].frontText}</p>
         {!showBackText && (
           <button onClick={handleFirstButtonClick}>Show Translation</button>
         )}
         {showBackText && (
           <>
-            <p>{stapleForTraining[index].backText}</p>
+            <p>{trainingStaple[index].backText}</p>
             <button
               onClick={() =>
-                handleSecondButtonClick(stapleForTraining[index], true)
+                handleSecondButtonClick(trainingStaple[index], true)
               }
             >
               I knew
             </button>
             <button
               onClick={() =>
-                handleSecondButtonClick(stapleForTraining[index], false)
+                handleSecondButtonClick(trainingStaple[index], false)
               }
             >
               I didn't know
