@@ -2,7 +2,7 @@ import { VocabularyItem } from '../App';
 
 const VocabularyList: React.FC<{
   vocabularyList: VocabularyItem[];
-  onHandleClickStaple: (staple: number) => void;
+  onSelectStaple: (staple: number) => void;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(
     (item) => item.currentStaple === 1
@@ -20,9 +20,7 @@ const VocabularyList: React.FC<{
 
       <h3>staple 1</h3>
       {stapleOne.length > 0 && (
-        <button onClick={() => props.onHandleClickStaple(1)}>
-          Review Staple
-        </button>
+        <button onClick={() => props.onSelectStaple(1)}>Review Staple</button>
       )}
       <ul>
         {stapleOne.map((item) => (
@@ -34,9 +32,7 @@ const VocabularyList: React.FC<{
 
       <h3>staple 2</h3>
       {stapleTwo.length > 0 && (
-        <button onClick={() => props.onHandleClickStaple(2)}>
-          Review Staple
-        </button>
+        <button onClick={() => props.onSelectStaple(2)}>Review Staple</button>
       )}
       <ul>
         {stapleTwo.map((item) => (
@@ -48,9 +44,7 @@ const VocabularyList: React.FC<{
 
       <h3>staple 3</h3>
       {stapleThree.length > 0 && (
-        <button onClick={() => props.onHandleClickStaple(3)}>
-          Review Staple
-        </button>
+        <button onClick={() => props.onSelectStaple(3)}>Review Staple</button>
       )}
       <ul>
         {stapleThree.map((item) => (

@@ -6,16 +6,17 @@ const VocabularyTraining: React.FC<{
   selectedStaple: number;
   vocabularyList: VocabularyItem[];
   onUpdateVocabularyList: (list: VocabularyItem[]) => void;
-  onResetStaple: () => void;
+  onSelectStaple: (staple: number) => void;
 }> = (props) => {
   const [index, setIndex] = useState(0);
   const [showBackText, setShowBackText] = useState(false);
-
-  const stapleForReview = props.vocabularyList.filter(
-    (item) => item.currentStaple === props.selectedStaple
+  const [trainingsResults, setTrainingsResults] = useState(
+    props.vocabularyList
   );
 
-  const [trainingsList, setTrainingsList] = useState(props.vocabularyList);
+  const stapleForTraining = props.vocabularyList.filter(
+    (item) => item.currentStaple === props.selectedStaple
+  );
 
   function handleFirstButtonClick() {
     setShowBackText(true);
@@ -29,14 +30,14 @@ const VocabularyTraining: React.FC<{
 
     if (
       userRememberedItem &&
-      (props.selectedStaple === 1 || props.selectedStaple === 2)
+      (clickedItem.currentStaple === 1 || clickedItem.currentStaple === 2)
     ) {
-      newStaple = props.selectedStaple + 1;
+      newStaple = clickedItem.currentStaple + 1;
     } else {
-      newStaple = props.selectedStaple;
+      newStaple = clickedItem.currentStaple;
     }
 
-    const newList = trainingsList.map((item) => {
+    const newList = trainingsResults.map((item) => {
       if (item.id === clickedItem.id) {
         const newItem = {
           ...item,
@@ -48,13 +49,13 @@ const VocabularyTraining: React.FC<{
       }
     });
 
-    if (index === stapleForReview.length - 1) {
+    if (index === stapleForTraining.length - 1) {
       props.onUpdateVocabularyList(newList);
-      props.onResetStaple();
+      props.onSelectStaple(0);
       return;
     }
 
-    setTrainingsList(newList);
+    setTrainingsResults(newList);
     setIndex((prevIndex) => prevIndex + 1);
     setShowBackText(false);
   }
@@ -62,33 +63,24 @@ const VocabularyTraining: React.FC<{
   return (
     <>
       <h2>training</h2>
-      <div>
-        stapleForReview.length:
-        {stapleForReview.length}
-      </div>
-
-      <div>index: {index}</div>
-
-      {stapleForReview.length === 0 && <div>nothing to review</div>}
-
       <div style={{ border: '1px solid black' }}>
-        <p>{stapleForReview[index].frontText}</p>
+        <p>{stapleForTraining[index].frontText}</p>
         {!showBackText && (
           <button onClick={handleFirstButtonClick}>Show Translation</button>
         )}
         {showBackText && (
           <>
-            <p>{stapleForReview[index].backText}</p>
+            <p>{stapleForTraining[index].backText}</p>
             <button
               onClick={() =>
-                handleSecondButtonClick(stapleForReview[index], true)
+                handleSecondButtonClick(stapleForTraining[index], true)
               }
             >
               I knew
             </button>
             <button
               onClick={() =>
-                handleSecondButtonClick(stapleForReview[index], false)
+                handleSecondButtonClick(stapleForTraining[index], false)
               }
             >
               I didn't know

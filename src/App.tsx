@@ -33,12 +33,8 @@ function App() {
     setVocabularyList(updatedList);
   }
 
-  function handleClickStaple(selectedStaple: number) {
+  function selectStaple(selectedStaple: number) {
     setSelectedStaple(selectedStaple);
-  }
-
-  function resetStaple() {
-    setSelectedStaple(0);
   }
 
   return (
@@ -54,12 +50,12 @@ function App() {
             selectedStaple={selectedStaple}
             vocabularyList={vocabularyList}
             onUpdateVocabularyList={updateVocabularyList}
-            onResetStaple={resetStaple}
+            onSelectStaple={selectStaple}
           />
         )}
         <VocabularyList
           vocabularyList={vocabularyList}
-          onHandleClickStaple={handleClickStaple}
+          onSelectStaple={selectStaple}
         />
       </main>
     </div>
