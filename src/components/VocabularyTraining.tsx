@@ -1,7 +1,6 @@
 import { useState } from 'react';
-
+import './VocabularyTraining.css';
 import { VocabularyItem } from '../App';
-
 import TrainingInProgress from './TrainingInProgress';
 import TrainingResults from './TrainingResults';
 
@@ -51,10 +50,11 @@ const VocabularyTraining: React.FC<{
   }
 
   return (
-    <>
-      <h2>training</h2>
-      <div style={{ border: '1px solid black' }}>
+    <div id="training-wrapper">
+      <div className="training-box">
         <button onClick={closeTrainingView}>X</button>
+
+        <h2>training</h2>
 
         {!showResultView && (
           <TrainingInProgress
@@ -73,7 +73,7 @@ const VocabularyTraining: React.FC<{
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 
