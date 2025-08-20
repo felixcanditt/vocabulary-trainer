@@ -9,8 +9,7 @@ const VocabularyTraining: React.FC<{
   const [trainingStaple, setTrainingStaple] = useState(props.listForTraining);
   const [index, setIndex] = useState(0);
   const [showBackText, setShowBackText] = useState(false);
-
-  console.log(trainingStaple);
+  const [showResultView, setShowResultView] = useState(false);
 
   function handleFirstButtonClick() {
     setShowBackText(true);
@@ -33,7 +32,8 @@ const VocabularyTraining: React.FC<{
     });
 
     if (index === trainingStaple.length - 1) {
-      props.onUpdateVocabularyList(updatedTrainingStaple);
+      setTrainingStaple(updatedTrainingStaple);
+      setShowResultView(true);
       return;
     }
 
@@ -42,37 +42,46 @@ const VocabularyTraining: React.FC<{
     setShowBackText(false);
   }
 
+  function endTraining() {
+    props.onUpdateVocabularyList(trainingStaple);
+  }
+
   return (
     <>
       <h2>training</h2>
       <div style={{ border: '1px solid black' }}>
-        <p>
-          {index} / {trainingStaple.length}{' '}
-          {trainingStaple.length === 1 ? ' item' : ' items'} reviewed
-        </p>
-        <p>{trainingStaple[index].frontText}</p>
-        {!showBackText && (
-          <button onClick={handleFirstButtonClick}>Show Translation</button>
-        )}
-        {showBackText && (
+        {!showResultView && (
           <>
-            <p>{trainingStaple[index].backText}</p>
-            <button
-              onClick={() =>
-                handleSecondButtonClick(trainingStaple[index], true)
-              }
-            >
-              I knew
-            </button>
-            <button
-              onClick={() =>
-                handleSecondButtonClick(trainingStaple[index], false)
-              }
-            >
-              I didn't know
-            </button>
+            <p>
+              {index} / {trainingStaple.length}{' '}
+              {trainingStaple.length === 1 ? ' item' : ' items'} reviewed
+            </p>
+            <p>{trainingStaple[index].frontText}</p>
+            {!showBackText && (
+              <button onClick={handleFirstButtonClick}>Show Translation</button>
+            )}
+            {showBackText && (
+              <>
+                <p>{trainingStaple[index].backText}</p>
+                <button
+                  onClick={() =>
+                    handleSecondButtonClick(trainingStaple[index], true)
+                  }
+                >
+                  I knew
+                </button>
+                <button
+                  onClick={() =>
+                    handleSecondButtonClick(trainingStaple[index], false)
+                  }
+                >
+                  I didn't know
+                </button>
+              </>
+            )}
           </>
         )}
+        {showResultView && <button onClick={endTraining}>done, go back</button>}
       </div>
     </>
   );
