@@ -46,6 +46,10 @@ const VocabularyTraining: React.FC<{
     <>
       <h2>training</h2>
       <div style={{ border: '1px solid black' }}>
+        <p>
+          {index} / {trainingStaple.length}{' '}
+          {trainingStaple.length === 1 ? ' item' : ' items'} reviewed
+        </p>
         <p>{trainingStaple[index].frontText}</p>
         {!showBackText && (
           <button onClick={handleFirstButtonClick}>Show Translation</button>
