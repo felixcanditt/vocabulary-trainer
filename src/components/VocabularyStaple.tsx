@@ -21,10 +21,10 @@ const VocabularyStaple: React.FC<{
       {props.stapleArray.length > 0 ? (
         <>
           <button onClick={() => props.onSelectStaple(props.stapleNumber)}>
-            Review Staple
+            Start Review
           </button>
           <button onClick={handleClickDetails}>
-            {showDetails ? 'Hide Staple Items' : 'Show Staple Items'}
+            {showDetails ? 'Hide Items' : 'Show Items'}
           </button>
           {showDetails && (
             <ul>

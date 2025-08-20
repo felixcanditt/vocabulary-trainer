@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './VocabularyTraining.css';
 import { VocabularyItem } from '../App';
 import TrainingInProgress from './TrainingInProgress';
 import TrainingResults from './TrainingResults';
@@ -50,8 +49,8 @@ const VocabularyTraining: React.FC<{
   }
 
   return (
-    <div id="training-wrapper">
-      <div className="training-box">
+    <div className="modal-wrapper">
+      <div>
         <button onClick={closeTrainingView}>X</button>
 
         <h2>training</h2>

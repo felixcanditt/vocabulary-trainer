@@ -18,24 +18,24 @@ const VocabularyList: React.FC<{
 
   return (
     <>
-      <h2>lists</h2>
+      <h2>My vocabulary</h2>
 
       <VocabularyStaple
-        stapleTitle="staple 1"
+        stapleTitle="Staple 1"
         stapleNumber={1}
         stapleArray={stapleOne}
         onSelectStaple={props.onSelectStaple}
       />
 
       <VocabularyStaple
-        stapleTitle="staple 2"
+        stapleTitle="Staple 2"
         stapleNumber={2}
         stapleArray={stapleTwo}
         onSelectStaple={props.onSelectStaple}
       />
 
       <VocabularyStaple
-        stapleTitle="staple 3"
+        stapleTitle="Staple 3"
         stapleNumber={3}
         stapleArray={stapleThree}
         onSelectStaple={props.onSelectStaple}

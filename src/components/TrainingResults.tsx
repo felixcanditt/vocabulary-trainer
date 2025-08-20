@@ -7,7 +7,7 @@ function getSummaryText(total: number, staple: number, remembered: number) {
     total,
     'item',
     'items'
-  )} from staple ${staple} and remembered ${remembered}.`;
+  )} from Staple ${staple} and remembered ${remembered}.`;
 }
 
 function getNextStepText(total: number, staple: number, remembered: number) {
@@ -15,13 +15,13 @@ function getNextStepText(total: number, staple: number, remembered: number) {
     total,
     'The item moves',
     'All items move'
-  )} to staple ${staple + 1}.`;
+  )} to Staple ${staple + 1}.`;
 
   const allStay = `${singularOrPlural(
     total,
     'The item stays',
     'All items stay'
-  )} in staple ${staple}.`;
+  )} in Staple ${staple}.`;
 
   if (staple === 3) return allStay;
 
@@ -32,7 +32,7 @@ function getNextStepText(total: number, staple: number, remembered: number) {
       remembered,
       'The item you remembered moves',
       'The items you remembered move'
-    )} to staple ${staple + 1}, the rest stay in staple ${staple}.`;
+    )} to Staple ${staple + 1}, the rest stay in Staple ${staple}.`;
   }
 
   return allStay;
