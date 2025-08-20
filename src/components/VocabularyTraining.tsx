@@ -3,19 +3,14 @@ import { useState } from 'react';
 import { VocabularyItem } from '../App';
 
 const VocabularyTraining: React.FC<{
-  selectedStaple: number;
-  vocabularyList: VocabularyItem[];
+  listForTraining: VocabularyItem[];
   onUpdateVocabularyList: (list: VocabularyItem[]) => void;
-  onSelectStaple: (staple: number) => void;
 }> = (props) => {
+  const [trainingStaple, setTrainingStaple] = useState(props.listForTraining);
   const [index, setIndex] = useState(0);
   const [showBackText, setShowBackText] = useState(false);
 
-  const [trainingStaple, setTrainingStaple] = useState(() =>
-    props.vocabularyList.filter(
-      (item) => item.currentStaple === props.selectedStaple
-    )
-  );
+  console.log(trainingStaple);
 
   function handleFirstButtonClick() {
     setShowBackText(true);
@@ -38,12 +33,7 @@ const VocabularyTraining: React.FC<{
     });
 
     if (index === trainingStaple.length - 1) {
-      const updatedVocabularyList = props.vocabularyList.map((item) => {
-        const updatedItem = updatedTrainingStaple.find((i) => i.id === item.id);
-        return updatedItem ? updatedItem : item;
-      });
-      props.onUpdateVocabularyList(updatedVocabularyList);
-      props.onSelectStaple(0);
+      props.onUpdateVocabularyList(updatedTrainingStaple);
       return;
     }
 

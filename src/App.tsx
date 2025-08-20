@@ -29,8 +29,13 @@ function App() {
     setVocabularyList((prevList) => [...prevList, newItem]);
   }
 
-  function updateVocabularyList(updatedList: VocabularyItem[]) {
-    setVocabularyList(updatedList);
+  function updateVocabularyList(trainingResults: VocabularyItem[]) {
+    const updatedVocabularyList = vocabularyList.map((item) => {
+      const updatedItem = trainingResults.find((i) => i.id === item.id);
+      return updatedItem ? updatedItem : item;
+    });
+    setVocabularyList(updatedVocabularyList);
+    setSelectedStaple(0);
   }
 
   function selectStaple(selectedStaple: number) {
@@ -46,10 +51,10 @@ function App() {
         <VocabularyForm onAddToVocabularyList={addToVocabularyList} />
         {selectedStaple !== 0 && (
           <VocabularyTraining
-            selectedStaple={selectedStaple}
-            vocabularyList={vocabularyList}
+            listForTraining={vocabularyList.filter(
+              (item) => item.currentStaple === selectedStaple
+            )}
             onUpdateVocabularyList={updateVocabularyList}
-            onSelectStaple={selectStaple}
           />
         )}
         <VocabularyLists
