@@ -16,7 +16,7 @@ const VocabularyTraining: React.FC<{
   const [rememberedItemsCount, setRememberedItemsCount] = useState(0);
   const [showResultView, setShowResultView] = useState(false);
 
-  function handleUserRemembered(
+  function userReviewedItem(
     clickedItem: VocabularyItem,
     userRememberedItem: boolean
   ) {
@@ -61,7 +61,7 @@ const VocabularyTraining: React.FC<{
             currentIndex={currentIndex}
             stapleTotal={trainingStaple.length}
             currentItem={trainingStaple[currentIndex]}
-            onHandleUserRemembered={handleUserRemembered}
+            onUserReviewedItem={userReviewedItem}
           />
         )}
 

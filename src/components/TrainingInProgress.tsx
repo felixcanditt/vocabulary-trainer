@@ -5,8 +5,8 @@ const TrainingInProgress: React.FC<{
   currentIndex: number;
   stapleTotal: number;
   currentItem: VocabularyItem;
-  onHandleUserRemembered: (item: VocabularyItem, knew: boolean) => void;
-}> = ({ currentIndex, stapleTotal, currentItem, onHandleUserRemembered }) => {
+  onUserReviewedItem: (item: VocabularyItem, knew: boolean) => void;
+}> = ({ currentIndex, stapleTotal, currentItem, onUserReviewedItem }) => {
   const [showBackText, setShowBackText] = useState(false);
 
   function revealTranslation() {
@@ -15,7 +15,7 @@ const TrainingInProgress: React.FC<{
 
   function handleKnewClick(item: VocabularyItem, knew: boolean) {
     setShowBackText(false);
-    onHandleUserRemembered(item, knew);
+    onUserReviewedItem(item, knew);
   }
 
   return (
