@@ -2,6 +2,38 @@ import { useState } from 'react';
 
 import { VocabularyItem } from '../App';
 
+function getSummaryText(total: number, staple: number, remembered: number) {
+  return `You reviewed staple ${staple} with ${total} ${
+    total === 1 ? 'item' : 'items'
+  } and remembered ${remembered} ${
+    remembered === 1 ? 'item' : 'items'
+  } correctly.`;
+}
+
+function getNextStepText(total: number, staple: number, remembered: number) {
+  if (staple < 3) {
+    if (remembered === total) {
+      return `${
+        remembered === 1 ? 'The item' : 'All items'
+      } will move to staple ${staple + 1}.`;
+    }
+    if (remembered > 0) {
+      return `The ${
+        remembered === 1 ? 'item' : 'items'
+      } you knew will move to staple ${staple + 1}. The ${
+        total - remembered === 1 ? 'one' : 'ones'
+      } you didn't know will stay in staple ${staple}.`;
+    }
+    return `${
+      total === 1 ? 'The item' : 'All items'
+    } will stay in staple ${staple}.`;
+  }
+
+  return `${
+    total === 1 ? 'The item' : 'All items'
+  } will stay in staple ${staple}.`;
+}
+
 const VocabularyTraining: React.FC<{
   listForTraining: VocabularyItem[];
   selectedStapleForReview: number;
@@ -12,7 +44,6 @@ const VocabularyTraining: React.FC<{
   const [index, setIndex] = useState(0);
   const [showBackText, setShowBackText] = useState(false);
   const [rememberedItemsCount, setRememberedItemsCount] = useState(0);
-
   const [showResultView, setShowResultView] = useState(false);
 
   function handleFirstButtonClick() {
@@ -39,7 +70,7 @@ const VocabularyTraining: React.FC<{
     });
 
     if (index === trainingStaple.length - 1) {
-      props.onUpdateVocabularyList(trainingStaple);
+      props.onUpdateVocabularyList(updatedTrainingStaple);
       setShowResultView(true);
       return;
     }
@@ -89,44 +120,23 @@ const VocabularyTraining: React.FC<{
             )}
           </>
         )}
+
         {showResultView && (
           <>
             <p>
-              You reviewed staple {props.selectedStapleForReview} with{' '}
-              {trainingStaple.length}{' '}
-              {trainingStaple.length === 1 ? 'item' : 'items'} and remembered{' '}
-              {rememberedItemsCount}{' '}
-              {rememberedItemsCount === 1 ? 'item' : 'items'} correctly.
+              {getSummaryText(
+                trainingStaple.length,
+                props.selectedStapleForReview,
+                rememberedItemsCount
+              )}
             </p>
-            {props.selectedStapleForReview < 3 &&
-              rememberedItemsCount === trainingStaple.length && (
-                <p>
-                  {rememberedItemsCount === 1 ? 'The item' : 'All items'}
-                  will move to staple {props.selectedStapleForReview + 1}.
-                </p>
+            <p>
+              {getNextStepText(
+                trainingStaple.length,
+                props.selectedStapleForReview,
+                rememberedItemsCount
               )}
-            {props.selectedStapleForReview < 3 &&
-              rememberedItemsCount > 0 &&
-              rememberedItemsCount < trainingStaple.length && (
-                <p>
-                  The {rememberedItemsCount === 1 ? 'item' : 'items'} you knew
-                  will move to staple {props.selectedStapleForReview + 1}. The{' '}
-                  {trainingStaple.length - rememberedItemsCount === 1
-                    ? 'one'
-                    : 'ones'}
-                  you didn't know will stay in staple{' '}
-                  {props.selectedStapleForReview}.
-                </p>
-              )}
-            {((props.selectedStapleForReview < 3 &&
-              rememberedItemsCount === 0) ||
-              props.selectedStapleForReview === 3) && (
-              <p>
-                {trainingStaple.length === 1 ? 'The item' : 'All items'} will
-                stay in staple {props.selectedStapleForReview}.
-              </p>
-            )}
-            <button onClick={closeTrainingView}>Go back to home</button>
+            </p>
           </>
         )}
       </div>
