@@ -2,36 +2,38 @@ import { useState } from 'react';
 
 import { VocabularyItem } from '../App';
 
+import TrainingInProcess from './TrainingInProcess';
+
 function getSummaryText(total: number, staple: number, remembered: number) {
-  return `You reviewed staple ${staple} with ${total} ${
+  return `You reviewed ${total} ${
     total === 1 ? 'item' : 'items'
-  } and remembered ${remembered} ${
-    remembered === 1 ? 'item' : 'items'
-  } correctly.`;
+  } from staple ${staple} and remembered ${remembered}.`;
 }
 
 function getNextStepText(total: number, staple: number, remembered: number) {
   if (staple < 3) {
     if (remembered === total) {
-      return `${
-        remembered === 1 ? 'The item' : 'All items'
-      } will move to staple ${staple + 1}.`;
+      return total === 1
+        ? `The item moves to staple ${staple + 1}.`
+        : `All items move to staple ${staple + 1}.`;
     }
     if (remembered > 0) {
-      return `The ${
-        remembered === 1 ? 'item' : 'items'
-      } you knew will move to staple ${staple + 1}. The ${
-        total - remembered === 1 ? 'one' : 'ones'
-      } you didn't know will stay in staple ${staple}.`;
+      return remembered === 1
+        ? `The item you remembered moves to staple ${
+            staple + 1
+          }, the rest stay in staple ${staple}.`
+        : `The items you remembered move to staple ${
+            staple + 1
+          }, the rest stay in staple ${staple}.`;
     }
-    return `${
-      total === 1 ? 'The item' : 'All items'
-    } will stay in staple ${staple}.`;
+    return total === 1
+      ? `The item stays in staple ${staple}.`
+      : `All items stay in staple ${staple}.`;
   }
 
-  return `${
-    total === 1 ? 'The item' : 'All items'
-  } will stay in staple ${staple}.`;
+  return total === 1
+    ? `The item stays in staple ${staple}.`
+    : `All items stay in staple ${staple}.`;
 }
 
 const VocabularyTraining: React.FC<{
@@ -41,22 +43,18 @@ const VocabularyTraining: React.FC<{
   onSelectStaple: (staple: number) => void;
 }> = (props) => {
   const [trainingStaple, setTrainingStaple] = useState(props.listForTraining);
-  const [index, setIndex] = useState(0);
-  const [showBackText, setShowBackText] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [rememberedItemsCount, setRememberedItemsCount] = useState(0);
   const [showResultView, setShowResultView] = useState(false);
 
-  function handleFirstButtonClick() {
-    setShowBackText(true);
-  }
-
-  function handleSecondButtonClick(
+  function handleUserRemembered(
     clickedItem: VocabularyItem,
     userRememberedItem: boolean
   ) {
     if (userRememberedItem) {
       setRememberedItemsCount((prevCount) => prevCount + 1);
     }
+
     const updatedTrainingStaple = trainingStaple.map((item) => {
       if (
         item.id === clickedItem.id &&
@@ -69,15 +67,14 @@ const VocabularyTraining: React.FC<{
       }
     });
 
-    if (index === trainingStaple.length - 1) {
+    if (currentIndex === trainingStaple.length - 1) {
       props.onUpdateVocabularyList(updatedTrainingStaple);
       setShowResultView(true);
       return;
     }
 
     setTrainingStaple(updatedTrainingStaple);
-    setIndex((prevIndex) => prevIndex + 1);
-    setShowBackText(false);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   }
 
   function closeTrainingView() {
@@ -88,37 +85,15 @@ const VocabularyTraining: React.FC<{
     <>
       <h2>training</h2>
       <div style={{ border: '1px solid black' }}>
+        <button onClick={closeTrainingView}>X</button>
+
         {!showResultView && (
-          <>
-            <button onClick={closeTrainingView}>X</button>
-            <p>
-              {index + 1} / {trainingStaple.length}
-              {trainingStaple.length === 1 ? ' item' : ' items'}
-            </p>
-            <p>{trainingStaple[index].frontText}</p>
-            {!showBackText && (
-              <button onClick={handleFirstButtonClick}>Show Translation</button>
-            )}
-            {showBackText && (
-              <>
-                <p>{trainingStaple[index].backText}</p>
-                <button
-                  onClick={() =>
-                    handleSecondButtonClick(trainingStaple[index], true)
-                  }
-                >
-                  I knew
-                </button>
-                <button
-                  onClick={() =>
-                    handleSecondButtonClick(trainingStaple[index], false)
-                  }
-                >
-                  I didn't know
-                </button>
-              </>
-            )}
-          </>
+          <TrainingInProcess
+            currentIndex={currentIndex}
+            stapleTotal={trainingStaple.length}
+            currentItem={trainingStaple[currentIndex]}
+            onHandleUserRemembered={handleUserRemembered}
+          />
         )}
 
         {showResultView && (
