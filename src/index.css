@@ -1,14 +1,33 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  margin: 0;
+body, input, button {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 1.25rem;
+}
+
+body {
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 2.125rem
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+ul {
+  list-style: none;
 }
 
 .modal-wrapper {
@@ -18,9 +37,10 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  backdrop-filter: blur(0.6rem);
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(0.6rem);
-  background-color: rgba(0, 0, 0, 0.3);
 }
