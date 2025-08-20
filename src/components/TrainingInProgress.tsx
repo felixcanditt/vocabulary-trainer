@@ -1,8 +1,7 @@
 import { useState } from 'react';
-
 import { VocabularyItem } from '../App';
 
-const TrainingInProcess: React.FC<{
+const TrainingInProgress: React.FC<{
   currentIndex: number;
   stapleTotal: number;
   currentItem: VocabularyItem;
@@ -44,4 +43,4 @@ const TrainingInProcess: React.FC<{
   );
 };
 
-export default TrainingInProcess;
+export default TrainingInProgress;

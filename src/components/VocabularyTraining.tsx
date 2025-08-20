@@ -2,39 +2,8 @@ import { useState } from 'react';
 
 import { VocabularyItem } from '../App';
 
-import TrainingInProcess from './TrainingInProcess';
-
-function getSummaryText(total: number, staple: number, remembered: number) {
-  return `You reviewed ${total} ${
-    total === 1 ? 'item' : 'items'
-  } from staple ${staple} and remembered ${remembered}.`;
-}
-
-function getNextStepText(total: number, staple: number, remembered: number) {
-  if (staple < 3) {
-    if (remembered === total) {
-      return total === 1
-        ? `The item moves to staple ${staple + 1}.`
-        : `All items move to staple ${staple + 1}.`;
-    }
-    if (remembered > 0) {
-      return remembered === 1
-        ? `The item you remembered moves to staple ${
-            staple + 1
-          }, the rest stay in staple ${staple}.`
-        : `The items you remembered move to staple ${
-            staple + 1
-          }, the rest stay in staple ${staple}.`;
-    }
-    return total === 1
-      ? `The item stays in staple ${staple}.`
-      : `All items stay in staple ${staple}.`;
-  }
-
-  return total === 1
-    ? `The item stays in staple ${staple}.`
-    : `All items stay in staple ${staple}.`;
-}
+import TrainingInProgress from './TrainingInProgress';
+import TrainingResults from './TrainingResults';
 
 const VocabularyTraining: React.FC<{
   listForTraining: VocabularyItem[];
@@ -88,7 +57,7 @@ const VocabularyTraining: React.FC<{
         <button onClick={closeTrainingView}>X</button>
 
         {!showResultView && (
-          <TrainingInProcess
+          <TrainingInProgress
             currentIndex={currentIndex}
             stapleTotal={trainingStaple.length}
             currentItem={trainingStaple[currentIndex]}
@@ -97,22 +66,11 @@ const VocabularyTraining: React.FC<{
         )}
 
         {showResultView && (
-          <>
-            <p>
-              {getSummaryText(
-                trainingStaple.length,
-                props.selectedStapleForReview,
-                rememberedItemsCount
-              )}
-            </p>
-            <p>
-              {getNextStepText(
-                trainingStaple.length,
-                props.selectedStapleForReview,
-                rememberedItemsCount
-              )}
-            </p>
-          </>
+          <TrainingResults
+            total={trainingStaple.length}
+            staple={props.selectedStapleForReview}
+            remembered={rememberedItemsCount}
+          />
         )}
       </div>
     </>
