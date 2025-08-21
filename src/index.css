@@ -47,6 +47,10 @@ button {
   padding: 0.6rem;
 }
 
+.close-button {
+  background-color: unset;
+}
+
 .container {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -84,4 +88,39 @@ button {
   width: 127px;
   margin-top: 0.75rem;
   margin-right: 1rem;
+}
+
+.trainings-modal {
+  border-radius: 0.4rem;
+  min-height: 260px;
+  min-width: 260px;
+  background: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.trainings-modal .close-button {
+  align-self: end;
+  padding: 0;
+}
+
+.trainings-modal .item-text {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.trainings-modal .selection-button {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.trainings-modal .knew-button {
+  margin-right: 1rem;
+}
+
+.trainings-modal .counter {
+  align-self: end;
+  justify-self: end;
 }

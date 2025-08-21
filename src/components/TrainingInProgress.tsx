@@ -20,25 +20,35 @@ const TrainingInProgress: React.FC<{
 
   return (
     <>
-      <p>
-        {currentIndex + 1} / {stapleTotal}
-        {stapleTotal === 1 ? ' item' : ' items'}
-      </p>
-      <p>{currentItem.frontText}</p>
+      <span className="item-text">{currentItem.frontText}</span>
       {!showBackText && (
-        <button onClick={revealTranslation}>Show Translation</button>
+        <button className="selection-button" onClick={revealTranslation}>
+          Show Translation
+        </button>
       )}
       {showBackText && (
         <>
-          <p>{currentItem.backText}</p>
-          <button onClick={() => handleKnewClick(currentItem, true)}>
-            I knew
-          </button>
-          <button onClick={() => handleKnewClick(currentItem, false)}>
-            I didn't know
-          </button>
+          <span className="item-text">{currentItem.backText}</span>
+          <div>
+            <button
+              className="selection-button knew-button"
+              onClick={() => handleKnewClick(currentItem, true)}
+            >
+              I knew
+            </button>
+            <button
+              className="selection-button"
+              onClick={() => handleKnewClick(currentItem, false)}
+            >
+              I didn't know
+            </button>
+          </div>
         </>
       )}
+      <span className="counter">
+        {currentIndex + 1}/{stapleTotal}
+        {stapleTotal === 1 ? ' item' : ' items'}
+      </span>
     </>
   );
 };
