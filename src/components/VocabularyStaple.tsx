@@ -13,7 +13,7 @@ const VocabularyStaple: React.FC<{
     setShowDetails((prevState) => !prevState);
   }
   return (
-    <>
+    <div className="staple-box">
       <h3>
         {props.stapleTitle} ({props.stapleArray.length}
         {props.stapleArray.length === 1 ? ' item' : ' items'})
@@ -39,7 +39,7 @@ const VocabularyStaple: React.FC<{
       ) : (
         <p>no items yet</p>
       )}
-    </>
+    </div>
   );
 };
 

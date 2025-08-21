@@ -48,34 +48,36 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>Vocabulary Trainer</h1>
-      </header>
-      <main>
-        <button onClick={toggleForm}>Add new item</button>
-        {showForm && (
-          <VocabularyForm
-            onAddToVocabularyList={addToVocabularyList}
-            onToggleForm={toggleForm}
-          />
-        )}
+      <div className="container">
+        <header>
+          <h1>Vocabulary Trainer</h1>
+        </header>
+        <main>
+          <button onClick={toggleForm}>Add new item</button>
+          {showForm && (
+            <VocabularyForm
+              onAddToVocabularyList={addToVocabularyList}
+              onToggleForm={toggleForm}
+            />
+          )}
 
-        {selectedStapleForReview !== 0 && (
-          <VocabularyTraining
-            listForTraining={vocabularyList.filter(
-              (item) => item.currentStaple === selectedStapleForReview
-            )}
-            selectedStapleForReview={selectedStapleForReview}
-            onUpdateVocabularyList={updateVocabularyList}
+          {selectedStapleForReview !== 0 && (
+            <VocabularyTraining
+              listForTraining={vocabularyList.filter(
+                (item) => item.currentStaple === selectedStapleForReview
+              )}
+              selectedStapleForReview={selectedStapleForReview}
+              onUpdateVocabularyList={updateVocabularyList}
+              onSelectStaple={selectStaple}
+            />
+          )}
+
+          <VocabularyLists
+            vocabularyList={vocabularyList}
             onSelectStaple={selectStaple}
           />
-        )}
-
-        <VocabularyLists
-          vocabularyList={vocabularyList}
-          onSelectStaple={selectStaple}
-        />
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
