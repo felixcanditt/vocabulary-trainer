@@ -92,7 +92,6 @@ button {
 
 .trainings-modal {
   border-radius: 0.4rem;
-  min-height: 260px;
   min-width: 260px;
   background: white;
   padding: 1rem;
@@ -114,6 +113,7 @@ button {
 .trainings-modal .selection-button {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  align-self: start;
 }
 
 .trainings-modal .knew-button {
@@ -123,4 +123,15 @@ button {
 .trainings-modal .counter {
   align-self: end;
   justify-self: end;
+}
+
+.training-in-progress {
+  display: flex;
+  flex-direction: column;
+}
+
+.training-in-progress .item-wrapper {
+  min-height: 166px;
+  display: flex;
+  flex-direction: column;
 }

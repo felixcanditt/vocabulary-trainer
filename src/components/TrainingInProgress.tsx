@@ -19,37 +19,40 @@ const TrainingInProgress: React.FC<{
   }
 
   return (
-    <>
-      <span className="item-text">{currentItem.frontText}</span>
-      {!showBackText && (
-        <button className="selection-button" onClick={revealTranslation}>
-          Show Translation
-        </button>
-      )}
-      {showBackText && (
-        <>
-          <span className="item-text">{currentItem.backText}</span>
-          <div>
-            <button
-              className="selection-button knew-button"
-              onClick={() => handleKnewClick(currentItem, true)}
-            >
-              I knew
-            </button>
-            <button
-              className="selection-button"
-              onClick={() => handleKnewClick(currentItem, false)}
-            >
-              I didn't know
-            </button>
-          </div>
-        </>
-      )}
+    <div className="training-in-progress">
+      <div className="item-wrapper">
+        <span className="item-text">{currentItem.frontText}</span>
+        {!showBackText && (
+          <button className="selection-button" onClick={revealTranslation}>
+            Show Translation
+          </button>
+        )}
+        {showBackText && (
+          <>
+            <span className="item-text">{currentItem.backText}</span>
+            <div>
+              <button
+                className="selection-button knew-button"
+                onClick={() => handleKnewClick(currentItem, true)}
+              >
+                I knew
+              </button>
+              <button
+                className="selection-button"
+                onClick={() => handleKnewClick(currentItem, false)}
+              >
+                I didn't know
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+
       <span className="counter">
         {currentIndex + 1}/{stapleTotal}
         {stapleTotal === 1 ? ' item' : ' items'}
       </span>
-    </>
+    </div>
   );
 };
 
