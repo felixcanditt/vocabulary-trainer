@@ -23,7 +23,7 @@ const TrainingInProgress: React.FC<{
       <div className="item-wrapper">
         <span className="item-text">{currentItem.frontText}</span>
         {!showBackText && (
-          <button className="selection-button" onClick={revealTranslation}>
+          <button className="modal-button" onClick={revealTranslation}>
             Show Translation
           </button>
         )}
@@ -32,13 +32,13 @@ const TrainingInProgress: React.FC<{
             <span className="item-text">{currentItem.backText}</span>
             <div>
               <button
-                className="selection-button knew-button"
+                className="modal-button knew-button"
                 onClick={() => handleKnewClick(currentItem, true)}
               >
                 I knew
               </button>
               <button
-                className="selection-button"
+                className="modal-button"
                 onClick={() => handleKnewClick(currentItem, false)}
               >
                 I didn't know

@@ -38,11 +38,15 @@ const VocabularyForm: React.FC<{
 
   return (
     <div className="modal-wrapper">
-      <form onSubmit={handleFormSubmit}>
-        <button type="button" onClick={handleFormCancelation}>
+      <form className="modal" onSubmit={handleFormSubmit}>
+        <button
+          type="button"
+          className="close-button"
+          onClick={handleFormCancelation}
+        >
           X
         </button>
-        <label htmlFor="front-text">Front</label>
+        <label htmlFor="front-text">Front Text</label>
         <input
           type="text"
           id="front-text"
@@ -50,7 +54,7 @@ const VocabularyForm: React.FC<{
           onChange={handleUserInput}
           value={userInput.frontText}
         />
-        <label htmlFor="back-text">Back</label>
+        <label htmlFor="back-text">Back Text</label>
         <input
           type="text"
           id="back-text"
@@ -58,7 +62,7 @@ const VocabularyForm: React.FC<{
           onChange={handleUserInput}
           value={userInput.backText}
         />
-        <button>save</button>
+        <button className="modal-button">Save</button>
         <p>The new item will be saved in Staple 1.</p>
       </form>
     </div>
