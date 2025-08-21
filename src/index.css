@@ -47,6 +47,11 @@ button {
   padding: 0.6rem;
 }
 
+button:hover,
+button:focus {
+  background-color: #ffd633;
+}
+
 form {
   background-color: white;
   display: flex;
@@ -61,8 +66,7 @@ input {
 }
 
 .container {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0 1rem;
   margin: 0 auto;
   max-width: 1000px;
 }
@@ -85,6 +89,7 @@ input {
 .modal {
   border-radius: 0.4rem;
   min-width: 260px;
+  max-width: 90%;
   background: white;
   padding: 1rem;
   display: flex;
@@ -101,6 +106,11 @@ input {
   background-color: unset;
   align-self: end;
   padding: 0;
+}
+
+.close-button:hover {
+  color: red;
+  background-color: unset;
 }
 
 .staples-container {
