@@ -96,7 +96,6 @@ input {
 
 .modal {
   border-radius: 0.4rem;
-  min-width: 16rem;
   max-width: 90%;
   background: white;
   padding: 1rem;
@@ -117,6 +116,7 @@ input {
 
 .close-button:hover {
   color: red;
+  background-color: transparent;
 }
 
 /* ---------------------- */
@@ -160,7 +160,8 @@ input {
 }
 
 .training-in-progress .item-wrapper {
-  min-height: 10rem;
+  min-height: 166px;
+  min-width: 227px;
   display: flex;
   flex-direction: column;
 }
