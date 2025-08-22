@@ -5,6 +5,7 @@ import { VocabularyItem } from '../App';
 const VocabularyList: React.FC<{
   vocabularyList: VocabularyItem[];
   onSelectStaple: (staple: number) => void;
+  onToggleForm: (id: string) => void;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(
     (item) => item.currentStaple === 1
@@ -26,6 +27,7 @@ const VocabularyList: React.FC<{
           stapleNumber={1}
           stapleArray={stapleOne}
           onSelectStaple={props.onSelectStaple}
+          onToggleForm={props.onToggleForm}
         />
 
         <VocabularyStaple
@@ -33,6 +35,7 @@ const VocabularyList: React.FC<{
           stapleNumber={2}
           stapleArray={stapleTwo}
           onSelectStaple={props.onSelectStaple}
+          onToggleForm={props.onToggleForm}
         />
 
         <VocabularyStaple
@@ -40,6 +43,7 @@ const VocabularyList: React.FC<{
           stapleNumber={3}
           stapleArray={stapleThree}
           onSelectStaple={props.onSelectStaple}
+          onToggleForm={props.onToggleForm}
         />
       </div>
     </>

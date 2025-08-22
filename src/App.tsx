@@ -26,7 +26,8 @@ function App() {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
   }, [vocabularyList]);
 
-  function toggleForm() {
+  function toggleForm(itemId?: string) {
+    console.log(itemId);
     setShowForm((prev) => !prev);
   }
 
@@ -58,7 +59,7 @@ function App() {
           <h1>Vocabulary Trainer</h1>
         </header>
         <main>
-          <button onClick={toggleForm}>Add new item</button>
+          <button onClick={() => toggleForm()}>Add new item</button>
           {showForm && (
             <VocabularyForm
               onAddToVocabularyList={addToVocabularyList}
@@ -80,6 +81,7 @@ function App() {
           <VocabularyLists
             vocabularyList={vocabularyList}
             onSelectStaple={selectStaple}
+            onToggleForm={toggleForm}
           />
         </main>
       </div>
