@@ -21,12 +21,15 @@ function App() {
   );
   const [selectedStapleForReview, setSelectedStapleForReview] = useState(0);
   const [showForm, setShowForm] = useState(false);
+  const [itemToBeEdited, setItemToBeEdited] = useState();
 
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
   }, [vocabularyList]);
 
   function toggleForm(itemId?: string) {
+    if (itemId) {
+    }
     console.log(itemId);
     setShowForm((prev) => !prev);
   }
