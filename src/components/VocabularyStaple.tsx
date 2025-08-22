@@ -29,8 +29,12 @@ const VocabularyStaple: React.FC<{
           {showDetails && (
             <ul>
               {props.stapleArray.map((item) => (
-                <li key={item.id}>
-                  {item.frontText} - {item.backText}
+                <li key={item.id} className="staple-item">
+                  <span className="item-text">
+                    {item.frontText} - {item.backText}
+                  </span>
+                  <span className="item-button">edit</span>
+                  <span className="item-button">delete</span>
                 </li>
               ))}
             </ul>
