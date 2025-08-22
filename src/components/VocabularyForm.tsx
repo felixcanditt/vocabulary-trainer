@@ -15,12 +15,14 @@ const VocabularyForm: React.FC<{
   onToggleForm: () => void;
 }> = (props) => {
   const [userInput, setUserInput] = useState<UserInput>(initialUserInput);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   function handleUserInput(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInput((prevInput) => ({
       ...prevInput,
       [event.target.name]: event.target.value,
     }));
+    setShowErrorMessage(false);
   }
 
   function handleFormCancelation() {
@@ -30,6 +32,15 @@ const VocabularyForm: React.FC<{
 
   function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
+
+    if (
+      userInput.frontText.trim().length === 0 ||
+      userInput.backText.trim().length === 0
+    ) {
+      setShowErrorMessage(true);
+      return;
+    }
+
     const newItem = { ...userInput, currentStaple: 1, id: uuidv4() };
     props.onAddToVocabularyList(newItem);
     setUserInput(initialUserInput);
@@ -62,6 +73,9 @@ const VocabularyForm: React.FC<{
           onChange={handleUserInput}
           value={userInput.backText}
         />
+        {showErrorMessage && (
+          <p className="error-message">Please enter front and back text.</p>
+        )}
         <button className="modal-button">Save</button>
         <p>The new item will be saved in Staple 1.</p>
       </form>

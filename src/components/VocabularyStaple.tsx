@@ -18,7 +18,7 @@ const VocabularyStaple: React.FC<{
         {props.stapleTitle} ({props.stapleArray.length}
         {props.stapleArray.length === 1 ? ' item' : ' items'})
       </h3>
-      {props.stapleArray.length > 0 ? (
+      {props.stapleArray.length > 0 && (
         <>
           <button onClick={() => props.onSelectStaple(props.stapleNumber)}>
             Start Review
@@ -36,8 +36,6 @@ const VocabularyStaple: React.FC<{
             </ul>
           )}
         </>
-      ) : (
-        <p>no items yet</p>
       )}
     </div>
   );

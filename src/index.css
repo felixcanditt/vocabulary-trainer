@@ -52,8 +52,7 @@ button {
   transition: background-color 0.2s;
 }
 
-button:hover,
-button:focus {
+button:hover {
   background-color: #ffd633;
 }
 
@@ -120,8 +119,16 @@ input {
 }
 
 /* ---------------------- */
-/* Components: Training & Staples */
+/* Components: Form, Training, Staples */
 /* ---------------------- */
+
+/* Form */
+
+.error-message {
+  color: red;
+}
+
+/* Staples */
 .staples-container {
   margin-top: 1.25rem;
   display: flex;
@@ -137,7 +144,7 @@ input {
   margin: 0.75rem 1rem 0 0;
 }
 
-/* Training modal */
+/* Training */
 .trainings-modal .item-text {
   font-size: 2rem;
   line-height: 1;
@@ -153,7 +160,6 @@ input {
   justify-self: end;
 }
 
-/* Training in progress */
 .training-in-progress {
   display: flex;
   flex-direction: column;

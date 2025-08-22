@@ -39,11 +39,16 @@ function App() {
   }
 
   function updateVocabularyList(trainingResults: VocabularyItem[]) {
-    const updatedVocabularyList = vocabularyList.map((item) => {
-      const updatedItem = trainingResults.find((i) => i.id === item.id);
-      return updatedItem ? updatedItem : item;
+    setVocabularyList((prevList) => {
+      const updatedIds = trainingResults.map((i) => i.id);
+      const untouchedItems = prevList.filter(
+        (item) => !updatedIds.includes(item.id)
+      );
+      const updatedItems = trainingResults.filter((item) =>
+        updatedIds.includes(item.id)
+      );
+      return [...untouchedItems, ...updatedItems];
     });
-    setVocabularyList(updatedVocabularyList);
   }
 
   return (
