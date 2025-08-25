@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { VocabularyItem } from '../App';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { VocabularyItem } from '../App';
+import DeleteModal from './DeleteModal';
 
 const VocabularyStaple: React.FC<{
   stapleTitle: string;
@@ -38,28 +39,11 @@ const VocabularyStaple: React.FC<{
   return (
     <>
       {showDeleteModal && itemToBeDeleted && (
-        <div className="modal-wrapper">
-          <div className="modal">
-            <button onClick={closeModal} className="close-button">
-              X
-            </button>
-            <p>Are you sure you want to delete this item?</p>
-            <span className="item-text">
-              {itemToBeDeleted.frontText} - {itemToBeDeleted.backText}
-            </span>
-            <div>
-              <button
-                onClick={handleYesClick}
-                className="modal-button yes-button"
-              >
-                Yes
-              </button>
-              <button onClick={closeModal} className="modal-button no-button">
-                No
-              </button>
-            </div>
-          </div>
-        </div>
+        <DeleteModal
+          onCloseModal={closeModal}
+          itemToBeDeleted={itemToBeDeleted}
+          onHandleYesClick={handleYesClick}
+        />
       )}
       <div className="staple-box">
         <h3>
