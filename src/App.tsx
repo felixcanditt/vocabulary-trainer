@@ -21,16 +21,16 @@ function App() {
   );
   const [selectedStapleForReview, setSelectedStapleForReview] = useState(0);
   const [showForm, setShowForm] = useState(false);
-  const [itemToBeEdited, setItemToBeEdited] = useState();
+  const [itemToBeEdited, setItemToBeEdited] = useState<VocabularyItem>();
 
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
   }, [vocabularyList]);
 
-  function toggleForm(itemId?: string) {
-    if (itemId) {
+  function toggleForm(selectedItem?: VocabularyItem) {
+    if (selectedItem) {
+      setItemToBeEdited(selectedItem);
     }
-    console.log(itemId);
     setShowForm((prev) => !prev);
   }
 
@@ -55,6 +55,12 @@ function App() {
     });
   }
 
+  function editVocabularyList(editedItem: VocabularyItem) {
+    setVocabularyList((prevList) =>
+      prevList.map((item) => (item.id === editedItem.id ? editedItem : item))
+    );
+  }
+
   return (
     <div className="App">
       <div className="container">
@@ -67,6 +73,8 @@ function App() {
             <VocabularyForm
               onAddToVocabularyList={addToVocabularyList}
               onToggleForm={toggleForm}
+              itemToBeEdited={itemToBeEdited}
+              onEditVocabularyList={editVocabularyList}
             />
           )}
 

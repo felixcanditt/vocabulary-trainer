@@ -13,8 +13,13 @@ const initialUserInput = { frontText: '', backText: '' };
 const VocabularyForm: React.FC<{
   onAddToVocabularyList: (item: VocabularyItem) => void;
   onToggleForm: () => void;
+  itemToBeEdited: VocabularyItem | undefined;
+  onEditVocabularyList: (item: VocabularyItem) => void;
 }> = (props) => {
-  const [userInput, setUserInput] = useState<UserInput>(initialUserInput);
+  const [userInput, setUserInput] = useState<UserInput>(
+    props.itemToBeEdited ? props.itemToBeEdited : initialUserInput
+  );
+
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   function handleUserInput(event: React.ChangeEvent<HTMLInputElement>) {
@@ -41,8 +46,18 @@ const VocabularyForm: React.FC<{
       return;
     }
 
-    const newItem = { ...userInput, currentStaple: 1, id: uuidv4() };
-    props.onAddToVocabularyList(newItem);
+    if (props.itemToBeEdited) {
+      const editedItem = {
+        ...props.itemToBeEdited,
+        frontText: userInput.frontText,
+        backText: userInput.backText,
+      };
+      props.onEditVocabularyList(editedItem);
+    } else {
+      const newItem = { ...userInput, currentStaple: 1, id: uuidv4() };
+      props.onAddToVocabularyList(newItem);
+    }
+
     setUserInput(initialUserInput);
     props.onToggleForm();
   }
@@ -77,7 +92,9 @@ const VocabularyForm: React.FC<{
           <p className="error-message">Please enter front and back text.</p>
         )}
         <button className="modal-button">Save</button>
-        <p>The new item will be saved in Staple 1.</p>
+        {!props.itemToBeEdited && (
+          <p>The new item will be saved in Staple 1.</p>
+        )}
       </form>
     </div>
   );

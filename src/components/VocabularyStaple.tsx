@@ -5,7 +5,7 @@ const VocabularyStaple: React.FC<{
   stapleTitle: string;
   stapleNumber: number;
   stapleArray: VocabularyItem[];
-  onToggleForm: (id: string) => void;
+  onToggleForm: (item: VocabularyItem) => void;
   onSelectStaple: (selection: number) => void;
 }> = (props) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -35,7 +35,7 @@ const VocabularyStaple: React.FC<{
                     {item.frontText} - {item.backText}
                   </span>
                   <span
-                    onClick={() => props.onToggleForm(item.id)}
+                    onClick={() => props.onToggleForm(item)}
                     className="item-button"
                   >
                     edit
