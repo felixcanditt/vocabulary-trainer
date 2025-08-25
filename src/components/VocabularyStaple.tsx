@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { VocabularyItem } from '../App';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const VocabularyStaple: React.FC<{
   stapleTitle: string;
@@ -53,7 +54,7 @@ const VocabularyStaple: React.FC<{
               >
                 Yes
               </button>
-              <button onClick={closeModal} className="modal-button">
+              <button onClick={closeModal} className="modal-button no-button">
                 No
               </button>
             </div>
@@ -67,10 +68,13 @@ const VocabularyStaple: React.FC<{
         </h3>
         {props.stapleArray.length > 0 && (
           <>
-            <button onClick={() => props.onSelectStaple(props.stapleNumber)}>
+            <button
+              onClick={() => props.onSelectStaple(props.stapleNumber)}
+              className="staple-button"
+            >
               Start Review
             </button>
-            <button onClick={handleClickDetails}>
+            <button onClick={handleClickDetails} className="staple-button">
               {showDetails ? 'Hide Items' : 'Show Items'}
             </button>
 
@@ -81,18 +85,19 @@ const VocabularyStaple: React.FC<{
                     <span className="item-text">
                       {item.frontText} - {item.backText}
                     </span>
-                    <span
+
+                    <button
                       onClick={() => props.onToggleForm(item)}
                       className="item-button"
                     >
-                      edit
-                    </span>
-                    <span
+                      <FaEdit size={16} />
+                    </button>
+                    <button
                       onClick={() => handleClickDelete(item)}
-                      className="item-button"
+                      className="item-button delete"
                     >
-                      delete
-                    </span>
+                      <FaTrash size={16} />
+                    </button>
                   </li>
                 ))}
               </ul>

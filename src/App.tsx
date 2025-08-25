@@ -30,6 +30,8 @@ function App() {
   function toggleForm(selectedItem?: VocabularyItem) {
     if (selectedItem) {
       setItemToBeEdited(selectedItem);
+    } else {
+      setItemToBeEdited(undefined);
     }
     setShowForm((prev) => !prev);
   }

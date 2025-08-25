@@ -139,21 +139,48 @@ input {
   margin: 0 1.5rem 1.5rem 0;
 }
 
-.staple-box button {
+.staple-box .staple-button {
   width: 8rem;
   margin: 0.75rem 1rem 0 0;
 }
 
+.staple-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
 .staple-item .item-button {
   margin-right: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.item-button.delete {
+  background-color: #ffb3b3;
+}
+
+.item-button.delete:hover {
+  background-color: #ff8080;
 }
 
 .staple-item .item-text {
-  margin-right: 2.5rem;
+  margin-right: 1.75rem;
 }
 
 .yes-button {
   margin-right: 1rem;
+  font-weight: bold;
+}
+
+.no-button {
+  margin-right: 1rem;
+  background-color: #ffd24d;
+}
+
+.no-button:hover {
+  background-color: #ffca1a;
 }
 
 /* Training */
