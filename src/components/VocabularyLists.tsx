@@ -6,7 +6,7 @@ const VocabularyList: React.FC<{
   vocabularyList: VocabularyItem[];
   onSelectStaple: (staple: number) => void;
   onToggleForm: (item: VocabularyItem) => void;
-  onDeleteItem: (id: string) => void;
+  onDeleteItem: (item: VocabularyItem) => void;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(
     (item) => item.currentStaple === 1

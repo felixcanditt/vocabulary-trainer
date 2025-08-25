@@ -152,6 +152,10 @@ input {
   margin-right: 2.5rem;
 }
 
+.yes-button {
+  margin-right: 1rem;
+}
+
 /* Training */
 .trainings-modal .item-text {
   font-size: 2rem;

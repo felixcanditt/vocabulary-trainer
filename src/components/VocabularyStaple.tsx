@@ -7,37 +7,57 @@ const VocabularyStaple: React.FC<{
   stapleArray: VocabularyItem[];
   onToggleForm: (item: VocabularyItem) => void;
   onSelectStaple: (selection: number) => void;
-  onDeleteItem: (id: string) => void;
+  onDeleteItem: (item: VocabularyItem) => void;
 }> = (props) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [itemToBeDeleted, setItemToBeDeleted] = useState('');
+  const [itemToBeDeleted, setItemToBeDeleted] = useState<VocabularyItem>();
 
   function handleClickDetails() {
     setShowDetails((prevState) => !prevState);
   }
 
-  function handleClickDelete(id: string) {
+  function handleClickDelete(item: VocabularyItem) {
     setShowDeleteModal(true);
-    setItemToBeDeleted(id);
+    setItemToBeDeleted(item);
   }
 
-  function handleNoClick() {
+  function closeModal() {
     setShowDeleteModal(false);
-    setItemToBeDeleted('');
+    setItemToBeDeleted(undefined);
   }
 
   function handleYesClick() {
-    props.onDeleteItem(itemToBeDeleted);
+    if (itemToBeDeleted) {
+      props.onDeleteItem(itemToBeDeleted);
+    }
+    closeModal();
   }
 
   return (
     <>
-      {showDeleteModal && (
-        <div>
-          <p>Are you sure you want to delete this item?</p>
-          <button onClick={handleYesClick}>Yes</button>
-          <button onClick={handleNoClick}>No</button>
+      {showDeleteModal && itemToBeDeleted && (
+        <div className="modal-wrapper">
+          <div className="modal">
+            <button onClick={closeModal} className="close-button">
+              X
+            </button>
+            <p>Are you sure you want to delete this item?</p>
+            <span className="item-text">
+              {itemToBeDeleted.frontText} - {itemToBeDeleted.backText}
+            </span>
+            <div>
+              <button
+                onClick={handleYesClick}
+                className="modal-button yes-button"
+              >
+                Yes
+              </button>
+              <button onClick={closeModal} className="modal-button">
+                No
+              </button>
+            </div>
+          </div>
         </div>
       )}
       <div className="staple-box">
@@ -68,7 +88,7 @@ const VocabularyStaple: React.FC<{
                       edit
                     </span>
                     <span
-                      onClick={() => handleClickDelete(item.id)}
+                      onClick={() => handleClickDelete(item)}
                       className="item-button"
                     >
                       delete

@@ -61,10 +61,9 @@ function App() {
     );
   }
 
-  function deleteItem(itemToBeDeletedId: string) {
-    console.log(itemToBeDeletedId);
+  function deleteItem(itemToBeDeleted: VocabularyItem) {
     setVocabularyList((prevList) =>
-      prevList.filter((item) => item.id !== itemToBeDeletedId)
+      prevList.filter((item) => item.id !== itemToBeDeleted.id)
     );
   }
 
