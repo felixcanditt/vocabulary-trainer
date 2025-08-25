@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa';
 import { VocabularyItem } from '../App';
+import StapleItem from './StapleItem';
 import DeleteModal from './DeleteModal';
 
 const VocabularyStaple: React.FC<{
@@ -45,12 +45,14 @@ const VocabularyStaple: React.FC<{
           onHandleYesClick={handleYesClick}
         />
       )}
+
       <div className="staple-box">
         <h3>
           {props.stapleTitle} ({props.stapleArray.length}
           {props.stapleArray.length === 1 ? ' item' : ' items'})
         </h3>
-        {props.stapleArray.length > 0 && (
+
+        {props.stapleArray.length > 0 ? (
           <>
             <button
               onClick={() => props.onSelectStaple(props.stapleNumber)}
@@ -65,28 +67,18 @@ const VocabularyStaple: React.FC<{
             {showDetails && (
               <ul>
                 {props.stapleArray.map((item) => (
-                  <li key={item.id} className="staple-item">
-                    <span className="item-text">
-                      {item.frontText} - {item.backText}
-                    </span>
-
-                    <button
-                      onClick={() => props.onToggleForm(item)}
-                      className="item-button"
-                    >
-                      <FaEdit size={16} />
-                    </button>
-                    <button
-                      onClick={() => handleClickDelete(item)}
-                      className="item-button delete"
-                    >
-                      <FaTrash size={16} />
-                    </button>
-                  </li>
+                  <StapleItem
+                    key={item.id}
+                    item={item}
+                    onToggleForm={props.onToggleForm}
+                    onHandleClickDelete={handleClickDelete}
+                  />
                 ))}
               </ul>
             )}
           </>
+        ) : (
+          <p>No items yet.</p>
         )}
       </div>
     </>
