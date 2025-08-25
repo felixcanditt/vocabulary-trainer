@@ -6,6 +6,7 @@ const VocabularyList: React.FC<{
   vocabularyList: VocabularyItem[];
   onSelectStaple: (staple: number) => void;
   onToggleForm: (item: VocabularyItem) => void;
+  onDeleteItem: (id: string) => void;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(
     (item) => item.currentStaple === 1
@@ -28,6 +29,7 @@ const VocabularyList: React.FC<{
           stapleArray={stapleOne}
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
+          onDeleteItem={props.onDeleteItem}
         />
 
         <VocabularyStaple
@@ -36,6 +38,7 @@ const VocabularyList: React.FC<{
           stapleArray={stapleTwo}
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
+          onDeleteItem={props.onDeleteItem}
         />
 
         <VocabularyStaple
@@ -44,6 +47,7 @@ const VocabularyList: React.FC<{
           stapleArray={stapleThree}
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
+          onDeleteItem={props.onDeleteItem}
         />
       </div>
     </>

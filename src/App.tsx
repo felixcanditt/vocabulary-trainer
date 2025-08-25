@@ -61,6 +61,13 @@ function App() {
     );
   }
 
+  function deleteItem(itemToBeDeletedId: string) {
+    console.log(itemToBeDeletedId);
+    setVocabularyList((prevList) =>
+      prevList.filter((item) => item.id !== itemToBeDeletedId)
+    );
+  }
+
   return (
     <div className="App">
       <div className="container">
@@ -93,6 +100,7 @@ function App() {
             vocabularyList={vocabularyList}
             onSelectStaple={selectStaple}
             onToggleForm={toggleForm}
+            onDeleteItem={deleteItem}
           />
         </main>
       </div>
