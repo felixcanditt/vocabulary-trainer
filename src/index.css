@@ -1,6 +1,7 @@
 /* ---------------------- */
-/* Reset & Base Styles */
+/* Base Styles */
 /* ---------------------- */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -40,9 +41,33 @@ ul {
   margin-top: 1rem;
 }
 
+form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border-radius: 0.4rem;
+  border: 0.06rem solid black;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.container {
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.me-1rem {
+  margin-right: 1rem;
+}
+
 /* ---------------------- */
-/* HTML Elements  */
+/* Buttons */
 /* ---------------------- */
+
 button {
   cursor: pointer;
   border: none;
@@ -117,34 +142,8 @@ button:focus {
   outline-offset: 2px;
 }
 
-.me-1rem {
-  margin-right: 1rem;
-}
-
-form {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-}
-
-input {
-  border-radius: 0.4rem;
-  border: 0.06rem solid black;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-}
-
 /* ---------------------- */
-/* Layout Utilities */
-/* ---------------------- */
-.container {
-  padding: 0 1rem;
-  margin: 0 auto;
-  max-width: 1000px;
-}
-
-/* ---------------------- */
-/* Components: Modals */
+/* Modals */
 /* ---------------------- */
 .modal-wrapper {
   position: fixed;
@@ -173,13 +172,14 @@ input {
 }
 
 /* ---------------------- */
-/* Components: Form, Training, Staples */
+/* Components */
 /* ---------------------- */
 
 /* Form */
 
 .error-message {
-  color: red;
+  color: #eb0000;
+  font-weight: bold;
 }
 
 /* Staples */
@@ -193,7 +193,7 @@ input {
   margin: 0 1.5rem 1.5rem 0;
 }
 
-.staple-box .start-show-buttons .button-yellow {
+.start-show-buttons .button-yellow {
   width: 8rem;
   margin-top: 0.75rem;
 }

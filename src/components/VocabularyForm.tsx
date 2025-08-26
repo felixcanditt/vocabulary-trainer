@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { VocabularyItem } from '../App';
@@ -19,6 +19,14 @@ const VocabularyForm: React.FC<{
   const [userInput, setUserInput] = useState<UserInput>(
     props.itemToBeEdited ? props.itemToBeEdited : initialUserInput
   );
+
+  const firstInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (firstInputRef.current) {
+      firstInputRef.current.focus();
+    }
+  }, []);
 
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
@@ -79,6 +87,7 @@ const VocabularyForm: React.FC<{
           name="frontText"
           onChange={handleUserInput}
           value={userInput.frontText}
+          ref={firstInputRef}
         />
         <label htmlFor="back-text">Back Text</label>
         <input
