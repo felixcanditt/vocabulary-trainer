@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import './App.css';
 
@@ -26,6 +26,8 @@ function App() {
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
   }, [vocabularyList]);
+
+  const openBtnRef = useRef<HTMLButtonElement>(null);
 
   function toggleForm(selectedItem?: VocabularyItem) {
     if (selectedItem) {
@@ -76,7 +78,11 @@ function App() {
           <h1>Vocabulary Trainer</h1>
         </header>
         <main>
-          <button onClick={() => toggleForm()} className="button-yellow">
+          <button
+            ref={openBtnRef}
+            onClick={() => toggleForm()}
+            className="button-yellow"
+          >
             Add new item
           </button>
           {showForm && (
@@ -85,6 +91,7 @@ function App() {
               onToggleForm={toggleForm}
               itemToBeEdited={itemToBeEdited}
               onEditVocabularyList={editVocabularyList}
+              openerRef={openBtnRef}
             />
           )}
 

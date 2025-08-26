@@ -15,6 +15,7 @@ const VocabularyForm: React.FC<{
   onToggleForm: () => void;
   itemToBeEdited: VocabularyItem | undefined;
   onEditVocabularyList: (item: VocabularyItem) => void;
+  openerRef: React.RefObject<HTMLButtonElement | null>;
 }> = (props) => {
   const [userInput, setUserInput] = useState<UserInput>(
     props.itemToBeEdited ? props.itemToBeEdited : initialUserInput
@@ -23,9 +24,9 @@ const VocabularyForm: React.FC<{
   const firstInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (firstInputRef.current) {
-      firstInputRef.current.focus();
-    }
+    console.log(firstInputRef);
+    firstInputRef.current?.focus();
+    props.openerRef?.current?.focus();
   }, []);
 
   const [showErrorMessage, setShowErrorMessage] = useState(false);
