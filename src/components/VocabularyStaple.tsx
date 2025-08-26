@@ -54,15 +54,17 @@ const VocabularyStaple: React.FC<{
 
         {props.stapleArray.length > 0 ? (
           <>
-            <button
-              onClick={() => props.onSelectStaple(props.stapleNumber)}
-              className="button-yellow"
-            >
-              Start Review
-            </button>
-            <button onClick={handleClickDetails} className="button-yellow">
-              {showDetails ? 'Hide Items' : 'Show Items'}
-            </button>
+            <div className="start-show-buttons">
+              <button
+                onClick={() => props.onSelectStaple(props.stapleNumber)}
+                className="button-yellow"
+              >
+                Start Review
+              </button>
+              <button onClick={handleClickDetails} className="button-yellow">
+                {showDetails ? 'Hide Items' : 'Show Items'}
+              </button>
+            </div>
 
             {showDetails && (
               <ul>

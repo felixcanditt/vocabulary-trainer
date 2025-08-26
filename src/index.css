@@ -37,7 +37,7 @@ h3 {
 
 ul {
   list-style: none;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
 }
 
 /* ---------------------- */
@@ -178,7 +178,7 @@ input {
   margin: 0 1.5rem 1.5rem 0;
 }
 
-.staple-box .staple-button {
+.staple-box .start-show-buttons .button-yellow {
   width: 8rem;
   margin: 0.75rem 1rem 0 0;
 }
@@ -186,22 +186,18 @@ input {
 .staple-item {
   display: flex;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-.staple-item .item-button {
-  margin-right: 1rem;
+.staple-item .button-yellow,
+.staple-item .button-red {
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
-.item-button.delete {
-  background-color: #ffb3b3;
-}
-
-.item-button.delete:hover {
-  background-color: #ff8080;
+.staple-item .button-yellow {
+  margin-right: 1rem;
 }
 
 .staple-item .item-text {
