@@ -67,7 +67,7 @@ const VocabularyForm: React.FC<{
       <form className="modal" onSubmit={handleFormSubmit}>
         <button
           type="button"
-          className="close-button"
+          className="button-red"
           onClick={handleFormCancelation}
         >
           X
@@ -91,7 +91,7 @@ const VocabularyForm: React.FC<{
         {showErrorMessage && (
           <p className="error-message">Please enter front and back text.</p>
         )}
-        <button className="modal-button">Save</button>
+        <button className="button-yellow">Save</button>
         {!props.itemToBeEdited && (
           <p>The new item will be saved in Staple 1.</p>
         )}

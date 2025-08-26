@@ -12,13 +12,10 @@ const StapleItem: React.FC<{
         {item.frontText} - {item.backText}
       </span>
 
-      <button onClick={() => onToggleForm(item)} className="item-button">
+      <button onClick={() => onToggleForm(item)} className="button-yellow">
         <FaEdit size={16} />
       </button>
-      <button
-        onClick={() => onHandleClickDelete(item)}
-        className="item-button delete"
-      >
+      <button onClick={() => onHandleClickDelete(item)} className="button-red">
         <FaTrash size={16} />
       </button>
     </li>

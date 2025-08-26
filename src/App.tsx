@@ -76,7 +76,9 @@ function App() {
           <h1>Vocabulary Trainer</h1>
         </header>
         <main>
-          <button onClick={() => toggleForm()}>Add new item</button>
+          <button onClick={() => toggleForm()} className="button-yellow">
+            Add new item
+          </button>
           {showForm && (
             <VocabularyForm
               onAddToVocabularyList={addToVocabularyList}

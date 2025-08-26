@@ -56,11 +56,11 @@ const VocabularyStaple: React.FC<{
           <>
             <button
               onClick={() => props.onSelectStaple(props.stapleNumber)}
-              className="staple-button"
+              className="button-yellow"
             >
               Start Review
             </button>
-            <button onClick={handleClickDetails} className="staple-button">
+            <button onClick={handleClickDetails} className="button-yellow">
               {showDetails ? 'Hide Items' : 'Show Items'}
             </button>
 
