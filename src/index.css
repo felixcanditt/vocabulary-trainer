@@ -98,9 +98,9 @@ button:focus {
 }
 
 .button-close {
+  padding: 0;
   background-color: transparent;
   align-self: end;
-  padding: 0.2rem 0.5rem;
   font-weight: bold;
 }
 
