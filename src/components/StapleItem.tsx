@@ -16,10 +16,10 @@ const StapleItem: React.FC<{
         onClick={() => onToggleForm(item)}
         className="button-yellow me-1rem"
       >
-        <FaEdit size={16} />
+        <FaEdit size={24} />
       </button>
       <button onClick={() => onHandleClickDelete(item)} className="button-red">
-        <FaTrash size={16} />
+        <FaTrash size={24} />
       </button>
     </li>
   );
