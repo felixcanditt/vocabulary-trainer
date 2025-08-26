@@ -24,9 +24,10 @@ const VocabularyForm: React.FC<{
   const firstInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    console.log(firstInputRef);
     firstInputRef.current?.focus();
-    props.openerRef?.current?.focus();
+    return () => {
+      props.openerRef?.current?.focus();
+    };
   }, []);
 
   const [showErrorMessage, setShowErrorMessage] = useState(false);
