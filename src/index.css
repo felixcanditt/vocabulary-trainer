@@ -95,6 +95,30 @@ button:focus {
   outline: 2px solid #ff1a1a;
 }
 
+.button-close {
+  background-color: transparent;
+  align-self: end;
+  padding: 0.2rem 0.5rem;
+  font-weight: bold;
+}
+
+.button-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.button-close:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.button-close:focus {
+  outline: 2px solid #ffb700;
+  outline-offset: 2px;
+}
+
+.me-1rem {
+  margin-right: 1rem;
+}
+
 form {
   background-color: white;
   display: flex;
@@ -141,20 +165,9 @@ input {
   flex-direction: column;
 }
 
-.modal-button {
-  margin: 0.5rem 0 1rem;
+.modal .button-yellow {
+  margin-top: 0.5rem;
   align-self: start;
-}
-
-.close-button {
-  background-color: transparent;
-  align-self: end;
-  padding: 0;
-}
-
-.close-button:hover {
-  color: red;
-  background-color: transparent;
 }
 
 /* ---------------------- */
@@ -180,7 +193,7 @@ input {
 
 .staple-box .start-show-buttons .button-yellow {
   width: 8rem;
-  margin: 0.75rem 1rem 0 0;
+  margin-top: 0.75rem;
 }
 
 .staple-item {
@@ -196,25 +209,8 @@ input {
   align-items: center;
 }
 
-.staple-item .button-yellow {
-  margin-right: 1rem;
-}
-
 .staple-item .item-text {
   margin-right: 1.75rem;
-}
-
-.yes-button {
-  margin-right: 1rem;
-  font-weight: bold;
-}
-
-.no-button {
-  background-color: #ffd24d;
-}
-
-.no-button:hover {
-  background-color: #ffca1a;
 }
 
 /* Training */
@@ -222,10 +218,6 @@ input {
   font-size: 2rem;
   line-height: 1;
   margin-bottom: 1rem;
-}
-
-.trainings-modal .knew-button {
-  margin-right: 1rem;
 }
 
 .trainings-modal .counter {

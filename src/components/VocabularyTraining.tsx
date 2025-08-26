@@ -51,7 +51,7 @@ const VocabularyTraining: React.FC<{
   return (
     <div className="modal-wrapper">
       <div className="modal trainings-modal">
-        <button className="close-button" onClick={closeTrainingView}>
+        <button className="button-close" onClick={closeTrainingView}>
           X
         </button>
 

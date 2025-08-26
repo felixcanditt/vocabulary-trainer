@@ -8,7 +8,7 @@ const DeleteModal: React.FC<{
   return (
     <div className="modal-wrapper">
       <div className="modal">
-        <button onClick={onCloseModal} className="button-red">
+        <button onClick={onCloseModal} className="button-close">
           X
         </button>
         <p>Are you sure you want to delete this item?</p>
@@ -16,7 +16,7 @@ const DeleteModal: React.FC<{
           {itemToBeDeleted.frontText} - {itemToBeDeleted.backText}
         </span>
         <div>
-          <button onClick={onHandleYesClick} className="button-yellow">
+          <button onClick={onHandleYesClick} className="button-red me-1rem">
             Yes
           </button>
           <button onClick={onCloseModal} className="button-yellow">

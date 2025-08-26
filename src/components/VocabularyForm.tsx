@@ -67,7 +67,7 @@ const VocabularyForm: React.FC<{
       <form className="modal" onSubmit={handleFormSubmit}>
         <button
           type="button"
-          className="button-red"
+          className="button-close"
           onClick={handleFormCancelation}
         >
           X
