@@ -22,19 +22,29 @@ function App() {
   const [selectedStapleForReview, setSelectedStapleForReview] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [itemToBeEdited, setItemToBeEdited] = useState<VocabularyItem>();
+  const [lastOpenerRef, setLastOpenerRef] =
+    useState<React.RefObject<HTMLButtonElement> | null>(null);
 
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
   }, [vocabularyList]);
 
-  const openBtnRef = useRef<HTMLButtonElement>(null);
+  const addBtnRef = useRef<HTMLButtonElement>(null);
 
-  function toggleForm(selectedItem?: VocabularyItem) {
-    if (selectedItem) {
-      setItemToBeEdited(selectedItem);
+  function toggleForm(opts?: {
+    selectedItem?: VocabularyItem;
+    openerRef?: React.RefObject<HTMLButtonElement>;
+  }) {
+    if (opts?.selectedItem) {
+      setItemToBeEdited(opts.selectedItem);
     } else {
       setItemToBeEdited(undefined);
     }
+
+    if (opts?.openerRef) {
+      setLastOpenerRef(opts.openerRef);
+    }
+
     setShowForm((prev) => !prev);
   }
 
@@ -79,8 +89,8 @@ function App() {
         </header>
         <main>
           <button
-            ref={openBtnRef}
-            onClick={() => toggleForm()}
+            ref={addBtnRef}
+            onClick={() => toggleForm({ openerRef: addBtnRef })}
             className="button-yellow"
           >
             Add new item
@@ -91,7 +101,7 @@ function App() {
               onToggleForm={toggleForm}
               itemToBeEdited={itemToBeEdited}
               onEditVocabularyList={editVocabularyList}
-              openerRef={openBtnRef}
+              openerRef={addBtnRef}
             />
           )}
 

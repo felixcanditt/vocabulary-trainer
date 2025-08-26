@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { VocabularyItem } from '../App';
 import StapleItem from './StapleItem';
 import DeleteModal from './DeleteModal';
@@ -14,6 +14,8 @@ const VocabularyStaple: React.FC<{
   const [showDetails, setShowDetails] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [itemToBeDeleted, setItemToBeDeleted] = useState<VocabularyItem>();
+
+  const startBtnRef = useRef<HTMLButtonElement>(null);
 
   function handleClickDetails() {
     setShowDetails((prevState) => !prevState);
@@ -56,7 +58,10 @@ const VocabularyStaple: React.FC<{
           <>
             <div className="start-show-buttons">
               <button
-                onClick={() => props.onSelectStaple(props.stapleNumber)}
+                ref={startBtnRef}
+                onClick={() =>
+                  props.onSelectStaple(props.stapleNumber, startBtnRef)
+                }
                 className="button-yellow me-1rem"
               >
                 Start Review
