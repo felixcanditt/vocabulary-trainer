@@ -15,9 +15,13 @@ const StapleItem: React.FC<{
         }
       | undefined
   ) => void;
-  onHandleClickDelete: (item: VocabularyItem) => void;
+  onHandleClickDelete: (
+    item: VocabularyItem,
+    openerRef: React.RefObject<HTMLButtonElement | null> | null
+  ) => void;
 }> = ({ item, onToggleForm, onHandleClickDelete }) => {
   const editBtnRef = useRef<HTMLButtonElement>(null);
+  const deleteBtnRef = useRef<HTMLButtonElement>(null);
 
   return (
     <li className="staple-item">
@@ -34,7 +38,11 @@ const StapleItem: React.FC<{
       >
         <FaEdit size={20} />
       </button>
-      <button onClick={() => onHandleClickDelete(item)} className="button-red">
+      <button
+        ref={deleteBtnRef}
+        onClick={() => onHandleClickDelete(item, deleteBtnRef)}
+        className="button-red"
+      >
         <FaTrash size={20} />
       </button>
     </li>

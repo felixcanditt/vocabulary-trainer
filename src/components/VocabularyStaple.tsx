@@ -27,6 +27,8 @@ const VocabularyStaple: React.FC<{
   const [showDetails, setShowDetails] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [itemToBeDeleted, setItemToBeDeleted] = useState<VocabularyItem>();
+  const [deleteOpenerRef, setDeleteOpenerRef] =
+    useState<React.RefObject<HTMLButtonElement | null> | null>(null);
 
   const startBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -34,9 +36,13 @@ const VocabularyStaple: React.FC<{
     setShowDetails((prevState) => !prevState);
   }
 
-  function handleClickDelete(item: VocabularyItem) {
+  function handleClickDelete(
+    item: VocabularyItem,
+    openerRef: React.RefObject<HTMLButtonElement | null> | null
+  ) {
     setShowDeleteModal(true);
     setItemToBeDeleted(item);
+    setDeleteOpenerRef(openerRef);
   }
 
   function closeModal() {
@@ -58,6 +64,7 @@ const VocabularyStaple: React.FC<{
           onCloseModal={closeModal}
           itemToBeDeleted={itemToBeDeleted}
           onHandleYesClick={handleYesClick}
+          openerRef={deleteOpenerRef}
         />
       )}
 

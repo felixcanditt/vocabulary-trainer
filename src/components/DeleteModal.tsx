@@ -1,10 +1,20 @@
+import { useEffect, useRef } from 'react';
 import { VocabularyItem } from '../App';
 
 const DeleteModal: React.FC<{
   onCloseModal: () => void;
   itemToBeDeleted: VocabularyItem;
   onHandleYesClick: () => void;
-}> = ({ onCloseModal, itemToBeDeleted, onHandleYesClick }) => {
+  openerRef: React.RefObject<HTMLButtonElement | null> | null;
+}> = ({ onCloseModal, itemToBeDeleted, onHandleYesClick, openerRef }) => {
+  const firstBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    firstBtnRef.current?.focus();
+    return () => {
+      openerRef?.current?.focus();
+    };
+  }, []);
   return (
     <div className="modal-wrapper">
       <div className="modal">
@@ -16,7 +26,11 @@ const DeleteModal: React.FC<{
           {itemToBeDeleted.frontText} - {itemToBeDeleted.backText}
         </span>
         <div>
-          <button onClick={onHandleYesClick} className="button-red me-1rem">
+          <button
+            ref={firstBtnRef}
+            onClick={onHandleYesClick}
+            className="button-red me-1rem"
+          >
             Yes
           </button>
           <button onClick={onCloseModal} className="button-yellow">
