@@ -83,16 +83,23 @@ const VocabularyStaple: React.FC<{
                   props.onSelectStaple(props.stapleNumber, startBtnRef)
                 }
                 className="button-yellow me-1rem"
+                aria-expanded="false"
+                aria-controls="trainings-modal"
               >
                 Start Review
               </button>
-              <button onClick={handleClickDetails} className="button-yellow">
+              <button
+                onClick={handleClickDetails}
+                className="button-yellow"
+                aria-expanded="false"
+                aria-controls="vocabulary-list"
+              >
                 {showDetails ? 'Hide Items' : 'Show Items'}
               </button>
             </div>
 
             {showDetails && (
-              <ul>
+              <ul id="vocabulary-list">
                 {props.stapleArray.map((item) => (
                   <StapleItem
                     key={item.id}

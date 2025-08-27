@@ -17,10 +17,17 @@ const DeleteModal: React.FC<{
   }, []);
   return (
     <div className="modal-wrapper">
-      <div className="modal">
+      <div
+        id="delete-modal"
+        className="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="deleteTitle"
+      >
         <button onClick={onCloseModal} className="button-close">
           X
         </button>
+        <h3 id="deleteTitle">Delete item</h3>
         <p>Are you sure you want to delete this item?</p>
         <span className="item-text">
           {itemToBeDeleted.frontText} - {itemToBeDeleted.backText}

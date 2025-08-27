@@ -65,7 +65,13 @@ const VocabularyTraining: React.FC<{
 
   return (
     <div className="modal-wrapper">
-      <div className="modal trainings-modal">
+      <div
+        id="trainings-modal"
+        className="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="trainings-title"
+      >
         <button
           ref={closeBtnRef}
           className="button-close"
@@ -73,6 +79,8 @@ const VocabularyTraining: React.FC<{
         >
           X
         </button>
+
+        <h3 id="trainings-title">Vocabulary Training</h3>
 
         {!showResultView && (
           <TrainingInProgress

@@ -74,7 +74,14 @@ const VocabularyForm: React.FC<{
 
   return (
     <div className="modal-wrapper">
-      <form className="modal" onSubmit={handleFormSubmit}>
+      <form
+        id="vocabulary-form"
+        className="modal"
+        onSubmit={handleFormSubmit}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="form-title"
+      >
         <button
           type="button"
           className="button-close"
@@ -82,6 +89,9 @@ const VocabularyForm: React.FC<{
         >
           X
         </button>
+        <h3 id="form-title">
+          {props.itemToBeEdited ? 'Edit item' : 'Add item'}
+        </h3>
         <label htmlFor="front-text">Front Text</label>
         <input
           type="text"
@@ -100,7 +110,9 @@ const VocabularyForm: React.FC<{
           value={userInput.backText}
         />
         {showErrorMessage && (
-          <p className="error-message">Please enter front and back text.</p>
+          <p className="error-message" role="status" aria-live="assertive">
+            Please enter front and back text.
+          </p>
         )}
         <button className="button-yellow">Save</button>
         {!props.itemToBeEdited && (

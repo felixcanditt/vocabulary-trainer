@@ -96,9 +96,12 @@ function App() {
         </header>
         <main>
           <button
+            id="add-button"
             ref={addBtnRef}
             onClick={() => toggleForm({ openerRef: addBtnRef })}
             className="button-yellow"
+            aria-controls="vocabulary-form"
+            aria-expanded="false"
           >
             Add new item
           </button>

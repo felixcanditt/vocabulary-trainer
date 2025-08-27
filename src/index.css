@@ -29,7 +29,6 @@ h1 {
 
 h2 {
   font-size: 2.125rem;
-  margin-top: 1.75rem;
 }
 
 h3 {
@@ -181,7 +180,16 @@ button:focus {
 /* Components */
 /* ---------------------- */
 
+#add-button {
+  margin-bottom: 1.75rem;
+}
+
 /* Form */
+
+#form-title,
+#trainings-title {
+  margin-bottom: 0.5rem;
+}
 
 .error-message {
   color: #eb0000;
@@ -223,13 +231,13 @@ button:focus {
 }
 
 /* Training */
-.trainings-modal .item-text {
+#trainings-modal .item-text {
   font-size: 2rem;
   line-height: 1;
   margin-bottom: 1rem;
 }
 
-.trainings-modal .counter {
+#trainings-modal .counter {
   align-self: end;
   justify-self: end;
 }

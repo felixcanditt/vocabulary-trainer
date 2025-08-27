@@ -35,6 +35,8 @@ const StapleItem: React.FC<{
           onToggleForm({ selectedItem: item, openerRef: editBtnRef })
         }
         className="button-yellow me-1rem"
+        aria-expanded="false"
+        aria-controls="vocabulary-form"
       >
         <FaEdit size={20} />
       </button>
@@ -42,6 +44,8 @@ const StapleItem: React.FC<{
         ref={deleteBtnRef}
         onClick={() => onHandleClickDelete(item, deleteBtnRef)}
         className="button-red"
+        aria-expanded="false"
+        aria-controls="delete-modal"
       >
         <FaTrash size={20} />
       </button>
