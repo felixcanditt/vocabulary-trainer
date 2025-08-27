@@ -54,6 +54,12 @@ input {
   margin-bottom: 1rem;
 }
 
+input:focus {
+  outline: none;
+  border-color: #ffb700; /* matches yellow button focus */
+  box-shadow: 0 0 0 3px rgba(255, 183, 0, 0.5); /* soft glow for emphasis */
+}
+
 .container {
   padding: 0 1rem;
   margin: 0 auto;
