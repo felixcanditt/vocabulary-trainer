@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { VocabularyItem } from '../App';
 import TrainingInProgress from './TrainingInProgress';
 import TrainingResults from './TrainingResults';
@@ -8,11 +8,26 @@ const VocabularyTraining: React.FC<{
   selectedStapleForReview: number;
   onUpdateVocabularyList: (list: VocabularyItem[]) => void;
   onSelectStaple: (staple: number) => void;
+  openerRef: React.RefObject<HTMLButtonElement | null> | null;
 }> = (props) => {
   const [trainingStaple, setTrainingStaple] = useState(props.listForTraining);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [rememberedItemsCount, setRememberedItemsCount] = useState(0);
   const [showResultView, setShowResultView] = useState(false);
+
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    return () => {
+      props.openerRef?.current?.focus();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showResultView) {
+      closeBtnRef.current?.focus();
+    }
+  }, [showResultView]);
 
   function userReviewedItem(
     clickedItem: VocabularyItem,
@@ -51,7 +66,11 @@ const VocabularyTraining: React.FC<{
   return (
     <div className="modal-wrapper">
       <div className="modal trainings-modal">
-        <button className="button-close" onClick={closeTrainingView}>
+        <button
+          ref={closeBtnRef}
+          className="button-close"
+          onClick={closeTrainingView}
+        >
           X
         </button>
 

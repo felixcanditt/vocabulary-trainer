@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { VocabularyItem } from '../App';
 
 const TrainingInProgress: React.FC<{
@@ -8,6 +8,17 @@ const TrainingInProgress: React.FC<{
   onUserReviewedItem: (item: VocabularyItem, knew: boolean) => void;
 }> = ({ currentIndex, stapleTotal, currentItem, onUserReviewedItem }) => {
   const [showBackText, setShowBackText] = useState(false);
+
+  const knewBtnRef = useRef<HTMLButtonElement>(null);
+  const showTranslationBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (showBackText) {
+      knewBtnRef.current?.focus();
+    } else {
+      showTranslationBtnRef.current?.focus();
+    }
+  }, [showBackText]);
 
   function revealTranslation() {
     setShowBackText(true);
@@ -23,7 +34,11 @@ const TrainingInProgress: React.FC<{
       <div className="item-wrapper">
         <span className="item-text">{currentItem.frontText}</span>
         {!showBackText && (
-          <button className="button-yellow" onClick={revealTranslation}>
+          <button
+            ref={showTranslationBtnRef}
+            className="button-yellow"
+            onClick={revealTranslation}
+          >
             Show Translation
           </button>
         )}
@@ -32,6 +47,7 @@ const TrainingInProgress: React.FC<{
             <span className="item-text">{currentItem.backText}</span>
             <div>
               <button
+                ref={knewBtnRef}
                 className="button-yellow me-1rem"
                 onClick={() => handleKnewClick(currentItem, true)}
               >

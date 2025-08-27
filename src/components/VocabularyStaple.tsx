@@ -18,7 +18,10 @@ const VocabularyStaple: React.FC<{
         }
       | undefined
   ) => void;
-  onSelectStaple: (selection: number) => void;
+  onSelectStaple: (
+    selection: number,
+    openerRef: React.RefObject<HTMLButtonElement | null> | null | undefined
+  ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
 }> = (props) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -69,7 +72,9 @@ const VocabularyStaple: React.FC<{
             <div className="start-show-buttons">
               <button
                 ref={startBtnRef}
-                onClick={() => props.onSelectStaple(props.stapleNumber)}
+                onClick={() =>
+                  props.onSelectStaple(props.stapleNumber, startBtnRef)
+                }
                 className="button-yellow me-1rem"
               >
                 Start Review

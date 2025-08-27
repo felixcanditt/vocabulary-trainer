@@ -52,7 +52,14 @@ function App() {
     setVocabularyList((prevList) => [...prevList, newItem]);
   }
 
-  function selectStaple(selectedStaple: number) {
+  function selectStaple(
+    selectedStaple: number,
+    openerRef?: React.RefObject<HTMLButtonElement | null> | null
+  ) {
+    if (openerRef) {
+      setLastOpenerRef(openerRef);
+    }
+
     setSelectedStapleForReview(selectedStaple);
   }
 
@@ -113,6 +120,7 @@ function App() {
               selectedStapleForReview={selectedStapleForReview}
               onUpdateVocabularyList={updateVocabularyList}
               onSelectStaple={selectStaple}
+              openerRef={lastOpenerRef}
             />
           )}
 
