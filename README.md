@@ -12,7 +12,6 @@ A lightweight vocabulary trainer demonstrating modern frontend skills:
 **Highlights:** Accessibility best practices, React state & hooks, TypeScript type safety, and clean component architecture.
 
 **Getting Started:**
-
 1. Clone the repo
 2. npm install
 3. npm start
