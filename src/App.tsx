@@ -101,7 +101,7 @@ function App() {
             onClick={() => toggleForm({ openerRef: addBtnRef })}
             className="button-yellow"
             aria-controls="vocabulary-form"
-            aria-expanded="false"
+            aria-expanded={showForm}
           >
             Add new item
           </button>

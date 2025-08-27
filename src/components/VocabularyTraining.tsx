@@ -76,6 +76,7 @@ const VocabularyTraining: React.FC<{
           ref={closeBtnRef}
           className="button-close"
           onClick={closeTrainingView}
+          aria-label="Close modal"
         >
           X
         </button>

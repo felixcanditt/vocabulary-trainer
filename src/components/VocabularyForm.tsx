@@ -86,6 +86,7 @@ const VocabularyForm: React.FC<{
           type="button"
           className="button-close"
           onClick={handleFormCancelation}
+          aria-label="Close modal"
         >
           X
         </button>
@@ -110,7 +111,7 @@ const VocabularyForm: React.FC<{
           value={userInput.backText}
         />
         {showErrorMessage && (
-          <p className="error-message" role="status" aria-live="assertive">
+          <p className="error-message" aria-live="assertive">
             Please enter front and back text.
           </p>
         )}

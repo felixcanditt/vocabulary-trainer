@@ -44,10 +44,10 @@ const TrainingResults: React.FC<{
   remembered: number;
 }> = ({ total, staple, remembered }) => {
   return (
-    <>
+    <div aria-live="polite">
       <p>{getSummaryText(total, staple, remembered)}</p>
       <p>{getNextStepText(total, staple, remembered)}</p>
-    </>
+    </div>
   );
 };
 

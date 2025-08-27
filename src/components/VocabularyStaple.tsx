@@ -69,7 +69,7 @@ const VocabularyStaple: React.FC<{
       )}
 
       <div className="staple-box">
-        <h3>
+        <h3 id={`staple-${props.stapleNumber}-title`}>
           {props.stapleTitle} ({props.stapleArray.length}
           {props.stapleArray.length === 1 ? ' item' : ' items'})
         </h3>
@@ -91,7 +91,7 @@ const VocabularyStaple: React.FC<{
               <button
                 onClick={handleClickDetails}
                 className="button-yellow"
-                aria-expanded="false"
+                aria-expanded={showDetails}
                 aria-controls="vocabulary-list"
               >
                 {showDetails ? 'Hide Items' : 'Show Items'}
@@ -99,16 +99,21 @@ const VocabularyStaple: React.FC<{
             </div>
 
             {showDetails && (
-              <ul id="vocabulary-list">
-                {props.stapleArray.map((item) => (
-                  <StapleItem
-                    key={item.id}
-                    item={item}
-                    onToggleForm={props.onToggleForm}
-                    onHandleClickDelete={handleClickDelete}
-                  />
-                ))}
-              </ul>
+              <div
+                role="region"
+                aria-labelledby={`staple-${props.stapleNumber}-title`}
+              >
+                <ul id={`staple-${props.stapleNumber}-list`}>
+                  {props.stapleArray.map((item) => (
+                    <StapleItem
+                      key={item.id}
+                      item={item}
+                      onToggleForm={props.onToggleForm}
+                      onHandleClickDelete={handleClickDelete}
+                    />
+                  ))}
+                </ul>
+              </div>
             )}
           </>
         ) : (

@@ -37,6 +37,7 @@ const StapleItem: React.FC<{
         className="button-yellow me-1rem"
         aria-expanded="false"
         aria-controls="vocabulary-form"
+        aria-label={`Edit item: ${item.frontText}`}
       >
         <FaEdit size={20} />
       </button>
@@ -46,6 +47,7 @@ const StapleItem: React.FC<{
         className="button-red"
         aria-expanded="false"
         aria-controls="delete-modal"
+        aria-label={`Delete item: ${item.frontText}`}
       >
         <FaTrash size={20} />
       </button>

@@ -44,7 +44,9 @@ const TrainingInProgress: React.FC<{
         )}
         {showBackText && (
           <>
-            <span className="item-text">{currentItem.backText}</span>
+            <span aria-live="polite" className="item-text">
+              {currentItem.backText}
+            </span>
             <div>
               <button
                 ref={knewBtnRef}
@@ -64,7 +66,7 @@ const TrainingInProgress: React.FC<{
         )}
       </div>
 
-      <span className="counter">
+      <span aria-live="polite" className="counter">
         {currentIndex + 1}/{stapleTotal}
         {stapleTotal === 1 ? ' item' : ' items'}
       </span>
