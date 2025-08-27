@@ -7,7 +7,17 @@ const VocabularyStaple: React.FC<{
   stapleTitle: string;
   stapleNumber: number;
   stapleArray: VocabularyItem[];
-  onToggleForm: (item: VocabularyItem) => void;
+  onToggleForm: (
+    opts:
+      | {
+          selectedItem: VocabularyItem | undefined;
+          openerRef:
+            | React.RefObject<HTMLButtonElement | null>
+            | null
+            | undefined;
+        }
+      | undefined
+  ) => void;
   onSelectStaple: (selection: number) => void;
   onDeleteItem: (item: VocabularyItem) => void;
 }> = (props) => {
@@ -59,9 +69,7 @@ const VocabularyStaple: React.FC<{
             <div className="start-show-buttons">
               <button
                 ref={startBtnRef}
-                onClick={() =>
-                  props.onSelectStaple(props.stapleNumber, startBtnRef)
-                }
+                onClick={() => props.onSelectStaple(props.stapleNumber)}
                 className="button-yellow me-1rem"
               >
                 Start Review

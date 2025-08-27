@@ -5,7 +5,17 @@ import { VocabularyItem } from '../App';
 const VocabularyList: React.FC<{
   vocabularyList: VocabularyItem[];
   onSelectStaple: (staple: number) => void;
-  onToggleForm: (item: VocabularyItem) => void;
+  onToggleForm: (
+    opts:
+      | {
+          selectedItem: VocabularyItem | undefined;
+          openerRef:
+            | React.RefObject<HTMLButtonElement | null>
+            | null
+            | undefined;
+        }
+      | undefined
+  ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(

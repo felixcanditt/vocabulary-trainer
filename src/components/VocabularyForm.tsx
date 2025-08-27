@@ -15,7 +15,7 @@ const VocabularyForm: React.FC<{
   onToggleForm: () => void;
   itemToBeEdited: VocabularyItem | undefined;
   onEditVocabularyList: (item: VocabularyItem) => void;
-  openerRef: React.RefObject<HTMLButtonElement | null>;
+  openerRef: React.RefObject<HTMLButtonElement | null> | null;
 }> = (props) => {
   const [userInput, setUserInput] = useState<UserInput>(
     props.itemToBeEdited ? props.itemToBeEdited : initialUserInput
