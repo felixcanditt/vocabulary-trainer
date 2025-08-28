@@ -171,6 +171,10 @@ button:focus {
   flex-direction: column;
 }
 
+.modal h3 {
+  margin-bottom: 1rem;
+}
+
 .modal .button-yellow {
   margin-top: 0.5rem;
   align-self: start;
@@ -184,16 +188,19 @@ button:focus {
   margin-bottom: 1.75rem;
 }
 
-/* Form */
-
-#form-title,
-#trainings-title {
-  margin-bottom: 0.5rem;
+#delete-modal .item-text {
+  margin-bottom: 1rem;
 }
+
+/* Form */
 
 .error-message {
   color: #eb0000;
   font-weight: bold;
+}
+
+.info-message {
+  margin-top: 0.5rem;
 }
 
 /* Staples */
@@ -231,13 +238,14 @@ button:focus {
 }
 
 /* Training */
+
 #trainings-modal .item-text {
   font-size: 2rem;
-  line-height: 1;
   margin-bottom: 1rem;
 }
 
 #trainings-modal .counter {
+  margin-top: 0.5rem;
   align-self: end;
   justify-self: end;
 }
@@ -248,7 +256,7 @@ button:focus {
 }
 
 .training-in-progress .item-wrapper {
-  min-height: 166px;
+  min-height: 182px;
   min-width: 227px;
   display: flex;
   flex-direction: column;

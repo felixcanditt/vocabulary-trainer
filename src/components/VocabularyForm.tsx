@@ -117,7 +117,9 @@ const VocabularyForm: React.FC<{
         )}
         <button className="button-yellow">Save</button>
         {!props.itemToBeEdited && (
-          <p>The new item will be saved in Staple 1.</p>
+          <p className="info-message">
+            The new item will be saved in Staple 1.
+          </p>
         )}
       </form>
     </div>
