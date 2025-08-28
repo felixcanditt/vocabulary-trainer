@@ -25,8 +25,8 @@ const StapleItem: React.FC<{
   const deleteBtnRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <>
-      <li className="staple-item">
+    <li className="staple-item">
+      <div className="item-content">
         <span className="item-text">
           {item.frontText} - {item.backText}
         </span>
@@ -53,15 +53,22 @@ const StapleItem: React.FC<{
         >
           <FaTrash size={20} />
         </button>
-      </li>
-      {editConfirmation &&
-        editConfirmation.itemId === item.id &&
-        (editConfirmation.wasSuccessful ? (
-          <p>Item has been edited.</p>
-        ) : (
-          <p>Editing failed, please try again.</p>
-        ))}
-    </>
+      </div>
+
+      {editConfirmation && editConfirmation.itemId === item.id && (
+        <div
+          className={`edit-message ${
+            editConfirmation.wasSuccessful ? 'success' : 'error'
+          }`}
+        >
+          <p>
+            {editConfirmation.wasSuccessful
+              ? 'Item has been edited.'
+              : 'Editing failed, please try again.'}
+          </p>
+        </div>
+      )}
+    </li>
   );
 };
 

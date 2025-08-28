@@ -89,6 +89,7 @@ function App() {
       );
       setEditConfirmation({ itemId: editedItem.id, wasSuccessful: true });
     } catch (error) {
+      // React state update won't normally throw, but I catch for safety
       console.error(`Editing the item failed: ${(error as Error).message}`);
       setEditConfirmation({ itemId: editedItem.id, wasSuccessful: false });
     }
