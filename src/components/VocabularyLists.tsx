@@ -1,6 +1,6 @@
 import VocabularyStaple from './VocabularyStaple';
 
-import { VocabularyItem } from '../App';
+import { VocabularyItem, EditConfirmation } from '../App';
 
 const VocabularyList: React.FC<{
   vocabularyList: VocabularyItem[];
@@ -17,6 +17,7 @@ const VocabularyList: React.FC<{
       | undefined
   ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
+  editConfirmation: EditConfirmation | undefined;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(
     (item) => item.currentStaple === 1
@@ -40,6 +41,7 @@ const VocabularyList: React.FC<{
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
+          editConfirmation={props.editConfirmation}
         />
 
         <VocabularyStaple
@@ -49,6 +51,7 @@ const VocabularyList: React.FC<{
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
+          editConfirmation={props.editConfirmation}
         />
 
         <VocabularyStaple
@@ -58,6 +61,7 @@ const VocabularyList: React.FC<{
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
+          editConfirmation={props.editConfirmation}
         />
       </div>
     </>

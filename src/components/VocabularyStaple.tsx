@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { VocabularyItem } from '../App';
+import { VocabularyItem, EditConfirmation } from '../App';
 import StapleItem from './StapleItem';
 import DeleteModal from './DeleteModal';
 
@@ -23,6 +23,7 @@ const VocabularyStaple: React.FC<{
     openerRef: React.RefObject<HTMLButtonElement | null> | null | undefined
   ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
+  editConfirmation: EditConfirmation | undefined;
 }> = (props) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -110,6 +111,7 @@ const VocabularyStaple: React.FC<{
                       item={item}
                       onToggleForm={props.onToggleForm}
                       onHandleClickDelete={handleClickDelete}
+                      editConfirmation={props.editConfirmation}
                     />
                   ))}
                 </ul>

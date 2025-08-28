@@ -15,6 +15,11 @@ export interface VocabularyItem {
   id: string;
 }
 
+export interface EditConfirmation {
+  itemId: string;
+  wasSuccessful: boolean;
+}
+
 function App() {
   const [vocabularyList, setVocabularyList] = useState<VocabularyItem[]>(
     loadFromLocalStorage('vocabularyTrainerList') ?? []
@@ -24,6 +29,7 @@ function App() {
   const [itemToBeEdited, setItemToBeEdited] = useState<VocabularyItem>();
   const [lastOpenerRef, setLastOpenerRef] =
     useState<React.RefObject<HTMLButtonElement | null> | null>(null);
+  const [editConfirmation, setEditConfirmation] = useState<EditConfirmation>();
 
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
@@ -77,9 +83,15 @@ function App() {
   }
 
   function editVocabularyList(editedItem: VocabularyItem) {
-    setVocabularyList((prevList) =>
-      prevList.map((item) => (item.id === editedItem.id ? editedItem : item))
-    );
+    try {
+      setVocabularyList((prevList) =>
+        prevList.map((item) => (item.id === editedItem.id ? editedItem : item))
+      );
+      setEditConfirmation({ itemId: editedItem.id, wasSuccessful: true });
+    } catch (error) {
+      console.error(`Editing the item failed: ${(error as Error).message}`);
+      setEditConfirmation({ itemId: editedItem.id, wasSuccessful: false });
+    }
   }
 
   function deleteItem(itemToBeDeleted: VocabularyItem) {
@@ -132,6 +144,7 @@ function App() {
             onSelectStaple={selectStaple}
             onToggleForm={toggleForm}
             onDeleteItem={deleteItem}
+            editConfirmation={editConfirmation}
           />
         </main>
       </div>
