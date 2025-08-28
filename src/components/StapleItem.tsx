@@ -60,12 +60,11 @@ const StapleItem: React.FC<{
           className={`edit-message ${
             editConfirmation.wasSuccessful ? 'success' : 'error'
           }`}
+          role={editConfirmation.wasSuccessful ? 'status' : 'alert'}
         >
-          <p>
-            {editConfirmation.wasSuccessful
-              ? 'Item has been edited.'
-              : 'Editing failed, please try again.'}
-          </p>
+          {editConfirmation.wasSuccessful
+            ? 'Item has been edited.'
+            : 'Editing failed, please try again.'}
         </div>
       )}
     </li>
