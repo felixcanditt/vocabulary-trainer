@@ -15,6 +15,7 @@ const DeleteModal: React.FC<{
       openerRef?.current?.focus();
     };
   }, []);
+
   return (
     <div className="modal-wrapper">
       <div

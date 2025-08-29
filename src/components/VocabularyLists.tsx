@@ -1,6 +1,6 @@
 import VocabularyStaple from './VocabularyStaple';
 
-import { VocabularyItem, EditConfirmation } from '../App';
+import { VocabularyItem, FeedbackForUser } from '../App';
 
 const VocabularyList: React.FC<{
   vocabularyList: VocabularyItem[];
@@ -17,8 +17,8 @@ const VocabularyList: React.FC<{
       | undefined
   ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
-  editConfirmation: EditConfirmation | undefined;
-  onSetEditConfirmation: (argument: undefined) => void;
+  feedbackForUser: FeedbackForUser | undefined;
+  onSetFeedbackForUser: (argument: undefined) => void;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(
     (item) => item.currentStaple === 1
@@ -42,8 +42,8 @@ const VocabularyList: React.FC<{
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
-          editConfirmation={props.editConfirmation}
-          onSetEditConfirmation={props.onSetEditConfirmation}
+          feedbackForUser={props.feedbackForUser}
+          onSetFeedbackForUser={props.onSetFeedbackForUser}
         />
 
         <VocabularyStaple
@@ -53,8 +53,8 @@ const VocabularyList: React.FC<{
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
-          editConfirmation={props.editConfirmation}
-          onSetEditConfirmation={props.onSetEditConfirmation}
+          feedbackForUser={props.feedbackForUser}
+          onSetFeedbackForUser={props.onSetFeedbackForUser}
         />
 
         <VocabularyStaple
@@ -64,8 +64,8 @@ const VocabularyList: React.FC<{
           onSelectStaple={props.onSelectStaple}
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
-          editConfirmation={props.editConfirmation}
-          onSetEditConfirmation={props.onSetEditConfirmation}
+          feedbackForUser={props.feedbackForUser}
+          onSetFeedbackForUser={props.onSetFeedbackForUser}
         />
       </div>
     </>

@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react';
-import { VocabularyItem, EditConfirmation } from '../App';
+import { VocabularyItem, FeedbackForUser } from '../App';
 import StapleItem from './StapleItem';
 import DeleteModal from './DeleteModal';
+import FeedbackMessage from './FeedbackMessage';
 
 const VocabularyStaple: React.FC<{
   stapleTitle: string;
@@ -23,8 +24,8 @@ const VocabularyStaple: React.FC<{
     openerRef: React.RefObject<HTMLButtonElement | null> | null | undefined
   ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
-  editConfirmation: EditConfirmation | undefined;
-  onSetEditConfirmation: (argument: undefined) => void;
+  feedbackForUser: FeedbackForUser | undefined;
+  onSetFeedbackForUser: (argument: undefined) => void;
 }> = (props) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -105,6 +106,14 @@ const VocabularyStaple: React.FC<{
                 role="region"
                 aria-labelledby={`staple-${props.stapleNumber}-title`}
               >
+                {props.feedbackForUser?.stapleBeforeDeletion ===
+                  props.stapleNumber && (
+                  <FeedbackMessage
+                    feedback={props.feedbackForUser}
+                    resetFeedback={props.onSetFeedbackForUser}
+                  />
+                )}
+
                 <ul id={`staple-${props.stapleNumber}-list`}>
                   {props.stapleArray.map((item) => (
                     <StapleItem
@@ -112,8 +121,8 @@ const VocabularyStaple: React.FC<{
                       item={item}
                       onToggleForm={props.onToggleForm}
                       onHandleClickDelete={handleClickDelete}
-                      editConfirmation={props.editConfirmation}
-                      onSetEditConfirmation={props.onSetEditConfirmation}
+                      feedbackForUser={props.feedbackForUser}
+                      onSetFeedbackForUser={props.onSetFeedbackForUser}
                     />
                   ))}
                 </ul>
@@ -121,7 +130,16 @@ const VocabularyStaple: React.FC<{
             )}
           </>
         ) : (
-          <p>No items yet.</p>
+          <>
+            <p>No items yet.</p>
+            {props.feedbackForUser?.stapleBeforeDeletion ===
+              props.stapleNumber && (
+              <FeedbackMessage
+                feedback={props.feedbackForUser}
+                resetFeedback={props.onSetFeedbackForUser}
+              />
+            )}
+          </>
         )}
       </div>
     </>

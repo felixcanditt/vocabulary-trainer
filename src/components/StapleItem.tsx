@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { VocabularyItem, EditConfirmation } from '../App';
+import { VocabularyItem, FeedbackForUser } from '../App';
+import FeedbackMessage from './FeedbackMessage';
 
 const StapleItem: React.FC<{
   item: VocabularyItem;
@@ -19,27 +20,27 @@ const StapleItem: React.FC<{
     item: VocabularyItem,
     openerRef: React.RefObject<HTMLButtonElement | null> | null
   ) => void;
-  editConfirmation: EditConfirmation | undefined;
-  onSetEditConfirmation: (argument: undefined) => void;
+  feedbackForUser: FeedbackForUser | undefined;
+  onSetFeedbackForUser: (argument: undefined) => void;
 }> = ({
   item,
   onToggleForm,
   onHandleClickDelete,
-  editConfirmation,
-  onSetEditConfirmation,
+  feedbackForUser,
+  onSetFeedbackForUser,
 }) => {
   const editBtnRef = useRef<HTMLButtonElement>(null);
   const deleteBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (editConfirmation && editConfirmation.itemId === item.id) {
+    if (feedbackForUser && feedbackForUser.itemId === item.id) {
       const timer = setTimeout(() => {
-        onSetEditConfirmation(undefined);
+        onSetFeedbackForUser(undefined);
       }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [editConfirmation]);
+  }, [feedbackForUser]);
 
   return (
     <li className="staple-item">
@@ -72,18 +73,13 @@ const StapleItem: React.FC<{
         </button>
       </div>
 
-      {editConfirmation && editConfirmation.itemId === item.id && (
-        <div
-          className={`edit-message ${
-            editConfirmation.wasSuccessful ? 'success' : 'error'
-          }`}
-          role={editConfirmation.wasSuccessful ? 'status' : 'alert'}
-        >
-          {editConfirmation.wasSuccessful
-            ? 'Item has been edited.'
-            : 'Editing failed, please try again.'}
-        </div>
-      )}
+      {feedbackForUser?.userAction === 'edit' &&
+        feedbackForUser?.itemId === item.id && (
+          <FeedbackMessage
+            feedback={feedbackForUser}
+            resetFeedback={onSetFeedbackForUser}
+          />
+        )}
     </li>
   );
 };

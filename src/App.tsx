@@ -5,6 +5,7 @@ import './App.css';
 import VocabularyForm from './components/VocabularyForm';
 import VocabularyLists from './components/VocabularyLists';
 import VocabularyTraining from './components/VocabularyTraining';
+import FeedbackMessage from './components/FeedbackMessage';
 
 import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
@@ -15,9 +16,11 @@ export interface VocabularyItem {
   id: string;
 }
 
-export interface EditConfirmation {
+export interface FeedbackForUser {
+  userAction: 'add' | 'edit' | 'delete';
   itemId: string;
   wasSuccessful: boolean;
+  stapleBeforeDeletion?: number;
 }
 
 function App() {
@@ -29,7 +32,7 @@ function App() {
   const [itemToBeEdited, setItemToBeEdited] = useState<VocabularyItem>();
   const [lastOpenerRef, setLastOpenerRef] =
     useState<React.RefObject<HTMLButtonElement | null> | null>(null);
-  const [editConfirmation, setEditConfirmation] = useState<EditConfirmation>();
+  const [feedbackForUser, setFeedbackForUser] = useState<FeedbackForUser>();
 
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
@@ -55,7 +58,22 @@ function App() {
   }
 
   function addToVocabularyList(newItem: VocabularyItem) {
-    setVocabularyList((prevList) => [...prevList, newItem]);
+    try {
+      setVocabularyList((prevList) => [...prevList, newItem]);
+      setFeedbackForUser({
+        userAction: 'add',
+        itemId: newItem.id,
+        wasSuccessful: true,
+      });
+    } catch (error) {
+      // React state update won't normally throw, but I catch for safety
+      console.error(`Adding the item failed: ${(error as Error).message}`);
+      setFeedbackForUser({
+        userAction: 'add',
+        itemId: newItem.id,
+        wasSuccessful: false,
+      });
+    }
   }
 
   function selectStaple(
@@ -87,18 +105,44 @@ function App() {
       setVocabularyList((prevList) =>
         prevList.map((item) => (item.id === editedItem.id ? editedItem : item))
       );
-      setEditConfirmation({ itemId: editedItem.id, wasSuccessful: true });
+      setFeedbackForUser({
+        userAction: 'edit',
+        itemId: editedItem.id,
+        wasSuccessful: true,
+      });
     } catch (error) {
       // React state update won't normally throw, but I catch for safety
       console.error(`Editing the item failed: ${(error as Error).message}`);
-      setEditConfirmation({ itemId: editedItem.id, wasSuccessful: false });
+      setFeedbackForUser({
+        userAction: 'edit',
+        itemId: editedItem.id,
+        wasSuccessful: false,
+      });
     }
   }
 
   function deleteItem(itemToBeDeleted: VocabularyItem) {
-    setVocabularyList((prevList) =>
-      prevList.filter((item) => item.id !== itemToBeDeleted.id)
-    );
+    try {
+      setVocabularyList((prevList) =>
+        prevList.filter((item) => item.id !== itemToBeDeleted.id)
+      );
+      setFeedbackForUser({
+        userAction: 'delete',
+        itemId: itemToBeDeleted.id,
+        wasSuccessful: true,
+        stapleBeforeDeletion: itemToBeDeleted.currentStaple,
+      });
+      addBtnRef.current?.focus();
+    } catch (error) {
+      // React state update won't normally throw, but I catch for safety
+      console.error(`Deleting the item failed: ${(error as Error).message}`);
+      setFeedbackForUser({
+        userAction: 'delete',
+        itemId: itemToBeDeleted.id,
+        wasSuccessful: false,
+      });
+      addBtnRef.current?.focus();
+    }
   }
 
   return (
@@ -108,16 +152,24 @@ function App() {
           <h1>Vocabulary Trainer</h1>
         </header>
         <main>
-          <button
-            id="add-button"
-            ref={addBtnRef}
-            onClick={() => toggleForm({ openerRef: addBtnRef })}
-            className="button-yellow"
-            aria-controls="vocabulary-form"
-            aria-expanded={showForm}
-          >
-            Add new item
-          </button>
+          <div id="add-button-box">
+            <button
+              ref={addBtnRef}
+              onClick={() => toggleForm({ openerRef: addBtnRef })}
+              className="button-yellow me-1rem"
+              aria-controls="vocabulary-form"
+              aria-expanded={showForm}
+            >
+              Add new item
+            </button>
+            {feedbackForUser?.userAction === 'add' && (
+              <FeedbackMessage
+                feedback={feedbackForUser}
+                resetFeedback={setFeedbackForUser}
+              />
+            )}
+          </div>
+
           {showForm && (
             <VocabularyForm
               onAddToVocabularyList={addToVocabularyList}
@@ -145,8 +197,8 @@ function App() {
             onSelectStaple={selectStaple}
             onToggleForm={toggleForm}
             onDeleteItem={deleteItem}
-            editConfirmation={editConfirmation}
-            onSetEditConfirmation={setEditConfirmation}
+            feedbackForUser={feedbackForUser}
+            onSetFeedbackForUser={setFeedbackForUser}
           />
         </main>
       </div>
