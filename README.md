@@ -1,6 +1,6 @@
 # Vocabulary Trainer
 
-**A modern, accessible React app for learning and managing vocabulary — built with TypeScript, WCAG best practices, and fully unit-tested.**
+**A modern, accessible React app for learning and managing vocabulary. Built with TypeScript, WCAG best practices, and fully unit-tested.**
 
 **Tech Stack & Highlights:**
 React | TypeScript | CSS | Hooks | WCAG | Jest & React Testing Library
