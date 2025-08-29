@@ -108,7 +108,10 @@ const VocabularyStaple: React.FC<{
               >
                 {props.feedbackForUser?.stapleBeforeDeletion ===
                   props.stapleNumber && (
-                  <FeedbackMessage feedback={props.feedbackForUser} />
+                  <FeedbackMessage
+                    feedback={props.feedbackForUser}
+                    resetFeedback={props.onSetFeedbackForUser}
+                  />
                 )}
 
                 <ul id={`staple-${props.stapleNumber}-list`}>
@@ -131,7 +134,10 @@ const VocabularyStaple: React.FC<{
             <p>No items yet.</p>
             {props.feedbackForUser?.stapleBeforeDeletion ===
               props.stapleNumber && (
-              <FeedbackMessage feedback={props.feedbackForUser} />
+              <FeedbackMessage
+                feedback={props.feedbackForUser}
+                resetFeedback={props.onSetFeedbackForUser}
+              />
             )}{' '}
           </>
         )}

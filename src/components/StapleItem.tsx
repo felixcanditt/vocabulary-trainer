@@ -74,7 +74,10 @@ const StapleItem: React.FC<{
       </div>
 
       {feedbackForUser?.itemId === item.id && (
-        <FeedbackMessage feedback={feedbackForUser} />
+        <FeedbackMessage
+          feedback={feedbackForUser}
+          resetFeedback={onSetFeedbackForUser}
+        />
       )}
     </li>
   );

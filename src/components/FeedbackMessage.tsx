@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 import { FeedbackForUser } from '../App';
 
 const FeedbackMessage: React.FC<{
   feedback: FeedbackForUser;
-}> = ({ feedback }) => {
+  resetFeedback: (argument: undefined) => void;
+}> = ({ feedback, resetFeedback }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      resetFeedback(undefined);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [feedback]);
+
   let successText = '';
   let errorText = '';
   if (feedback.userAction === 'add') {
