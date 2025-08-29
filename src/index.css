@@ -24,7 +24,7 @@ body {
 }
 
 h1 {
-  margin: 1rem 0 1.25rem;
+  margin: 1.5rem 0 1rem;
 }
 
 h2 {
@@ -183,9 +183,15 @@ button:focus {
 /* ---------------------- */
 /* Components */
 /* ---------------------- */
-
-#add-button {
+#add-button-box {
   margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#add-button-box .button-yellow {
+  margin-top: 0.5rem;
 }
 
 #delete-modal .item-text {

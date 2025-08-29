@@ -150,22 +150,24 @@ function App() {
           <h1>Vocabulary Trainer</h1>
         </header>
         <main>
-          <button
-            id="add-button"
-            ref={addBtnRef}
-            onClick={() => toggleForm({ openerRef: addBtnRef })}
-            className="button-yellow"
-            aria-controls="vocabulary-form"
-            aria-expanded={showForm}
-          >
-            Add new item
-          </button>
-          {feedbackForUser?.userAction === 'add' && (
-            <FeedbackMessage
-              feedback={feedbackForUser}
-              resetFeedback={setFeedbackForUser}
-            />
-          )}
+          <div id="add-button-box">
+            <button
+              ref={addBtnRef}
+              onClick={() => toggleForm({ openerRef: addBtnRef })}
+              className="button-yellow me-1rem"
+              aria-controls="vocabulary-form"
+              aria-expanded={showForm}
+            >
+              Add new item
+            </button>
+            {feedbackForUser?.userAction === 'add' && (
+              <FeedbackMessage
+                feedback={feedbackForUser}
+                resetFeedback={setFeedbackForUser}
+              />
+            )}
+          </div>
+
           {showForm && (
             <VocabularyForm
               onAddToVocabularyList={addToVocabularyList}
