@@ -138,7 +138,7 @@ const VocabularyStaple: React.FC<{
                 feedback={props.feedbackForUser}
                 resetFeedback={props.onSetFeedbackForUser}
               />
-            )}{' '}
+            )}
           </>
         )}
       </div>

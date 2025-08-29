@@ -5,6 +5,7 @@ import './App.css';
 import VocabularyForm from './components/VocabularyForm';
 import VocabularyLists from './components/VocabularyLists';
 import VocabularyTraining from './components/VocabularyTraining';
+import FeedbackMessage from './components/FeedbackMessage';
 
 import { updateLocalStorage, loadFromLocalStorage } from './lib/localStorage';
 
@@ -57,7 +58,22 @@ function App() {
   }
 
   function addToVocabularyList(newItem: VocabularyItem) {
-    setVocabularyList((prevList) => [...prevList, newItem]);
+    try {
+      setVocabularyList((prevList) => [...prevList, newItem]);
+      setFeedbackForUser({
+        userAction: 'add',
+        itemId: newItem.id,
+        wasSuccessful: true,
+      });
+    } catch (error) {
+      // React state update won't normally throw, but I catch for safety
+      console.error(`Adding the item failed: ${(error as Error).message}`);
+      setFeedbackForUser({
+        userAction: 'add',
+        itemId: newItem.id,
+        wasSuccessful: false,
+      });
+    }
   }
 
   function selectStaple(
@@ -117,6 +133,7 @@ function App() {
         stapleBeforeDeletion: itemToBeDeleted.currentStaple,
       });
     } catch (error) {
+      // React state update won't normally throw, but I catch for safety
       console.error(`Deleting the item failed: ${(error as Error).message}`);
       setFeedbackForUser({
         userAction: 'delete',
@@ -143,6 +160,12 @@ function App() {
           >
             Add new item
           </button>
+          {feedbackForUser?.userAction === 'add' && (
+            <FeedbackMessage
+              feedback={feedbackForUser}
+              resetFeedback={setFeedbackForUser}
+            />
+          )}
           {showForm && (
             <VocabularyForm
               onAddToVocabularyList={addToVocabularyList}

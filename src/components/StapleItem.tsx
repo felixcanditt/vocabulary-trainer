@@ -73,12 +73,13 @@ const StapleItem: React.FC<{
         </button>
       </div>
 
-      {feedbackForUser?.itemId === item.id && (
-        <FeedbackMessage
-          feedback={feedbackForUser}
-          resetFeedback={onSetFeedbackForUser}
-        />
-      )}
+      {feedbackForUser?.userAction === 'edit' &&
+        feedbackForUser?.itemId === item.id && (
+          <FeedbackMessage
+            feedback={feedbackForUser}
+            resetFeedback={onSetFeedbackForUser}
+          />
+        )}
     </li>
   );
 };
