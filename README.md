@@ -8,7 +8,7 @@ A lightweight, fully accessible vocabulary trainer that demonstrates modern fron
 - Keyboard navigable, ARIA roles, visible focus indicators  
 - Timed feedback messages for add/edit/delete actions  
 - Modular, typed components with state managed via hooks
-- Persistent data via Local Storage
+- Persistent data with Local Storage
 - Responsive, user-friendly UI
 - **Unit-tested** core flows (add, edit, delete)
 
