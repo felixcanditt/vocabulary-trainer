@@ -11,10 +11,8 @@ const DeleteModal: React.FC<{
 
   useEffect(() => {
     firstBtnRef.current?.focus();
-    return () => {
-      openerRef?.current?.focus();
-    };
   }, []);
+
   return (
     <div className="modal-wrapper">
       <div

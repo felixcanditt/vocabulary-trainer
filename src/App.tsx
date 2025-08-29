@@ -132,6 +132,7 @@ function App() {
         wasSuccessful: true,
         stapleBeforeDeletion: itemToBeDeleted.currentStaple,
       });
+      addBtnRef.current?.focus();
     } catch (error) {
       // React state update won't normally throw, but I catch for safety
       console.error(`Deleting the item failed: ${(error as Error).message}`);
@@ -140,6 +141,7 @@ function App() {
         itemId: itemToBeDeleted.id,
         wasSuccessful: false,
       });
+      addBtnRef.current?.focus();
     }
   }
 
