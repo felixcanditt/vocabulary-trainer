@@ -19,6 +19,7 @@ export interface FeedbackForUser {
   userAction: 'add' | 'edit' | 'delete';
   itemId: string;
   wasSuccessful: boolean;
+  stapleBeforeDeletion?: number;
 }
 
 function App() {

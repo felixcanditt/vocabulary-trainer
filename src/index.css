@@ -240,19 +240,19 @@ button:focus {
   margin-right: 1.75rem;
 }
 
-.edit-message {
+.feedback-for-user {
   margin-top: 0.5rem;
   border-radius: 0.375rem;
   padding: 0.5rem 0.75rem;
 }
 
-.edit-message.success {
+.feedback-for-user.success {
   background-color: #e6f7ec;
   color: #206a3a;
   border: 1px solid #b3e6c1;
 }
 
-.edit-message.error {
+.feedback-for-user.error {
   background-color: #fdeaea;
   color: #a12626;
   border: 1px solid #f5bcbc;

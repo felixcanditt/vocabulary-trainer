@@ -105,6 +105,23 @@ const VocabularyStaple: React.FC<{
                 role="region"
                 aria-labelledby={`staple-${props.stapleNumber}-title`}
               >
+                {props.feedbackForUser &&
+                  props.feedbackForUser.userAction === 'delete' && (
+                    <div
+                      className={`feedback-for-user ${
+                        props.feedbackForUser.wasSuccessful
+                          ? 'success'
+                          : 'error'
+                      }`}
+                      role={
+                        props.feedbackForUser.wasSuccessful ? 'status' : 'alert'
+                      }
+                    >
+                      {props.feedbackForUser.wasSuccessful
+                        ? 'Item has been deleted.'
+                        : 'Deleting failed, please try again.'}
+                    </div>
+                  )}
                 <ul id={`staple-${props.stapleNumber}-list`}>
                   {props.stapleArray.map((item) => (
                     <StapleItem
@@ -121,7 +138,24 @@ const VocabularyStaple: React.FC<{
             )}
           </>
         ) : (
-          <p>No items yet.</p>
+          <>
+            <p>No items yet.</p>
+            {props.feedbackForUser &&
+              props.feedbackForUser.userAction === 'delete' && (
+                <div
+                  className={`feedback-for-user ${
+                    props.feedbackForUser.wasSuccessful ? 'success' : 'error'
+                  }`}
+                  role={
+                    props.feedbackForUser.wasSuccessful ? 'status' : 'alert'
+                  }
+                >
+                  {props.feedbackForUser.wasSuccessful
+                    ? 'Item has been deleted.'
+                    : 'Deleting failed, please try again.'}
+                </div>
+              )}
+          </>
         )}
       </div>
     </>
