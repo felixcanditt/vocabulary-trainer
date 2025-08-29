@@ -59,7 +59,7 @@ const StapleItem: React.FC<{
           aria-controls="vocabulary-form"
           aria-label={`Edit item: ${item.frontText}`}
         >
-          <FaEdit size={20} />
+          {FaEdit({ size: 20 })}
         </button>
         <button
           ref={deleteBtnRef}
@@ -69,7 +69,7 @@ const StapleItem: React.FC<{
           aria-controls="delete-modal"
           aria-label={`Delete item: ${item.frontText}`}
         >
-          <FaTrash size={20} />
+          {FaTrash({ size: 20 })}
         </button>
       </div>
 
