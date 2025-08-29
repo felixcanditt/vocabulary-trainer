@@ -76,7 +76,7 @@ const StapleItem: React.FC<{
         feedbackForUser.itemId === item.id &&
         feedbackForUser.userAction === 'edit' && (
           <div
-            className={`edit-message ${
+            className={`feedback-for-user ${
               feedbackForUser.wasSuccessful ? 'success' : 'error'
             }`}
             role={feedbackForUser.wasSuccessful ? 'status' : 'alert'}
