@@ -24,7 +24,11 @@ const DeleteModal: React.FC<{
         aria-modal="true"
         aria-labelledby="deleteTitle"
       >
-        <button onClick={onCloseModal} className="button-close">
+        <button
+          onClick={onCloseModal}
+          className="button-close"
+          aria-label="Close modal"
+        >
           X
         </button>
         <h3 id="deleteTitle">Delete item</h3>
