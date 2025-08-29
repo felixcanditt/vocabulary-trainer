@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { VocabularyItem, FeedbackForUser } from '../App';
 import StapleItem from './StapleItem';
 import DeleteModal from './DeleteModal';
+import FeedbackMessage from './FeedbackMessage';
 
 const VocabularyStaple: React.FC<{
   stapleTitle: string;
@@ -66,16 +67,11 @@ const VocabularyStaple: React.FC<{
       props.feedbackForUser.stapleBeforeDeletion === props.stapleNumber
     ) {
       return (
-        <div
-          className={`feedback-for-user ${
-            props.feedbackForUser.wasSuccessful ? 'success' : 'error'
-          }`}
-          role={props.feedbackForUser.wasSuccessful ? 'status' : 'alert'}
-        >
-          {props.feedbackForUser.wasSuccessful
-            ? 'Item has been deleted.'
-            : 'Deleting failed, please try again.'}
-        </div>
+        <FeedbackMessage
+          feedback={props.feedbackForUser}
+          successText="Item has been deleted."
+          errorText="Deleting failed, please try again."
+        />
       );
     }
   }

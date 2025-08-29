@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { VocabularyItem, FeedbackForUser } from '../App';
+import FeedbackMessage from './FeedbackMessage';
 
 const StapleItem: React.FC<{
   item: VocabularyItem;
@@ -75,16 +76,11 @@ const StapleItem: React.FC<{
       {feedbackForUser &&
         feedbackForUser.itemId === item.id &&
         feedbackForUser.userAction === 'edit' && (
-          <div
-            className={`feedback-for-user ${
-              feedbackForUser.wasSuccessful ? 'success' : 'error'
-            }`}
-            role={feedbackForUser.wasSuccessful ? 'status' : 'alert'}
-          >
-            {feedbackForUser.wasSuccessful
-              ? 'Item has been edited.'
-              : 'Editing failed, please try again.'}
-          </div>
+          <FeedbackMessage
+            feedback={feedbackForUser}
+            successText="Item has been edited."
+            errorText="Editing failed, please try again."
+          />
         )}
     </li>
   );
