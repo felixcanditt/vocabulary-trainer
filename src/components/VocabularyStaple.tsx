@@ -60,22 +60,6 @@ const VocabularyStaple: React.FC<{
     closeModal();
   }
 
-  function getDeletionFeedback() {
-    if (
-      props.feedbackForUser &&
-      props.feedbackForUser.userAction === 'delete' &&
-      props.feedbackForUser.stapleBeforeDeletion === props.stapleNumber
-    ) {
-      return (
-        <FeedbackMessage
-          feedback={props.feedbackForUser}
-          successText="Item has been deleted."
-          errorText="Deleting failed, please try again."
-        />
-      );
-    }
-  }
-
   return (
     <>
       {showDeleteModal && itemToBeDeleted && (
@@ -122,7 +106,10 @@ const VocabularyStaple: React.FC<{
                 role="region"
                 aria-labelledby={`staple-${props.stapleNumber}-title`}
               >
-                {getDeletionFeedback()}
+                {props.feedbackForUser?.stapleBeforeDeletion ===
+                  props.stapleNumber && (
+                  <FeedbackMessage feedback={props.feedbackForUser} />
+                )}
 
                 <ul id={`staple-${props.stapleNumber}-list`}>
                   {props.stapleArray.map((item) => (
@@ -142,7 +129,10 @@ const VocabularyStaple: React.FC<{
         ) : (
           <>
             <p>No items yet.</p>
-            {getDeletionFeedback()}
+            {props.feedbackForUser?.stapleBeforeDeletion ===
+              props.stapleNumber && (
+              <FeedbackMessage feedback={props.feedbackForUser} />
+            )}{' '}
           </>
         )}
       </div>

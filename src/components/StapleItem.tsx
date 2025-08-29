@@ -73,15 +73,9 @@ const StapleItem: React.FC<{
         </button>
       </div>
 
-      {feedbackForUser &&
-        feedbackForUser.itemId === item.id &&
-        feedbackForUser.userAction === 'edit' && (
-          <FeedbackMessage
-            feedback={feedbackForUser}
-            successText="Item has been edited."
-            errorText="Editing failed, please try again."
-          />
-        )}
+      {feedbackForUser?.itemId === item.id && (
+        <FeedbackMessage feedback={feedbackForUser} />
+      )}
     </li>
   );
 };
