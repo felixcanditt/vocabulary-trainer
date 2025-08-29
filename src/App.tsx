@@ -15,7 +15,8 @@ export interface VocabularyItem {
   id: string;
 }
 
-export interface EditConfirmation {
+export interface FeedbackForUser {
+  userAction: 'add' | 'edit' | 'delete';
   itemId: string;
   wasSuccessful: boolean;
 }
@@ -29,7 +30,7 @@ function App() {
   const [itemToBeEdited, setItemToBeEdited] = useState<VocabularyItem>();
   const [lastOpenerRef, setLastOpenerRef] =
     useState<React.RefObject<HTMLButtonElement | null> | null>(null);
-  const [editConfirmation, setEditConfirmation] = useState<EditConfirmation>();
+  const [feedbackForUser, setFeedbackForUser] = useState<FeedbackForUser>();
 
   useEffect(() => {
     updateLocalStorage('vocabularyTrainerList', vocabularyList);
@@ -87,18 +88,40 @@ function App() {
       setVocabularyList((prevList) =>
         prevList.map((item) => (item.id === editedItem.id ? editedItem : item))
       );
-      setEditConfirmation({ itemId: editedItem.id, wasSuccessful: true });
+      setFeedbackForUser({
+        userAction: 'edit',
+        itemId: editedItem.id,
+        wasSuccessful: true,
+      });
     } catch (error) {
       // React state update won't normally throw, but I catch for safety
       console.error(`Editing the item failed: ${(error as Error).message}`);
-      setEditConfirmation({ itemId: editedItem.id, wasSuccessful: false });
+      setFeedbackForUser({
+        userAction: 'edit',
+        itemId: editedItem.id,
+        wasSuccessful: false,
+      });
     }
   }
 
   function deleteItem(itemToBeDeleted: VocabularyItem) {
-    setVocabularyList((prevList) =>
-      prevList.filter((item) => item.id !== itemToBeDeleted.id)
-    );
+    try {
+      setVocabularyList((prevList) =>
+        prevList.filter((item) => item.id !== itemToBeDeleted.id)
+      );
+      setFeedbackForUser({
+        userAction: 'delete',
+        itemId: itemToBeDeleted.id,
+        wasSuccessful: true,
+      });
+    } catch (error) {
+      console.error(`Deleting the item failed: ${(error as Error).message}`);
+      setFeedbackForUser({
+        userAction: 'delete',
+        itemId: itemToBeDeleted.id,
+        wasSuccessful: false,
+      });
+    }
   }
 
   return (
@@ -145,8 +168,8 @@ function App() {
             onSelectStaple={selectStaple}
             onToggleForm={toggleForm}
             onDeleteItem={deleteItem}
-            editConfirmation={editConfirmation}
-            onSetEditConfirmation={setEditConfirmation}
+            feedbackForUser={feedbackForUser}
+            onSetFeedbackForUser={setFeedbackForUser}
           />
         </main>
       </div>
