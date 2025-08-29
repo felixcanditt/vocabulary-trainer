@@ -18,6 +18,7 @@ const VocabularyList: React.FC<{
   ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
   editConfirmation: EditConfirmation | undefined;
+  onSetEditConfirmation: (argument: undefined) => void;
 }> = (props) => {
   const stapleOne = props.vocabularyList.filter(
     (item) => item.currentStaple === 1
@@ -42,6 +43,7 @@ const VocabularyList: React.FC<{
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
           editConfirmation={props.editConfirmation}
+          onSetEditConfirmation={props.onSetEditConfirmation}
         />
 
         <VocabularyStaple
@@ -52,6 +54,7 @@ const VocabularyList: React.FC<{
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
           editConfirmation={props.editConfirmation}
+          onSetEditConfirmation={props.onSetEditConfirmation}
         />
 
         <VocabularyStaple
@@ -62,6 +65,7 @@ const VocabularyList: React.FC<{
           onToggleForm={props.onToggleForm}
           onDeleteItem={props.onDeleteItem}
           editConfirmation={props.editConfirmation}
+          onSetEditConfirmation={props.onSetEditConfirmation}
         />
       </div>
     </>

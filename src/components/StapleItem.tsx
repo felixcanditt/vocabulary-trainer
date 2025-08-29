@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { VocabularyItem, EditConfirmation } from '../App';
 
@@ -20,9 +20,26 @@ const StapleItem: React.FC<{
     openerRef: React.RefObject<HTMLButtonElement | null> | null
   ) => void;
   editConfirmation: EditConfirmation | undefined;
-}> = ({ item, onToggleForm, onHandleClickDelete, editConfirmation }) => {
+  onSetEditConfirmation: (argument: undefined) => void;
+}> = ({
+  item,
+  onToggleForm,
+  onHandleClickDelete,
+  editConfirmation,
+  onSetEditConfirmation,
+}) => {
   const editBtnRef = useRef<HTMLButtonElement>(null);
   const deleteBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (editConfirmation && editConfirmation.itemId === item.id) {
+      const timer = setTimeout(() => {
+        onSetEditConfirmation(undefined);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [editConfirmation]);
 
   return (
     <li className="staple-item">

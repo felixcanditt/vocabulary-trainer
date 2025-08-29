@@ -146,6 +146,7 @@ function App() {
             onToggleForm={toggleForm}
             onDeleteItem={deleteItem}
             editConfirmation={editConfirmation}
+            onSetEditConfirmation={setEditConfirmation}
           />
         </main>
       </div>

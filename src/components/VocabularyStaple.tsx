@@ -24,6 +24,7 @@ const VocabularyStaple: React.FC<{
   ) => void;
   onDeleteItem: (item: VocabularyItem) => void;
   editConfirmation: EditConfirmation | undefined;
+  onSetEditConfirmation: (argument: undefined) => void;
 }> = (props) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -112,6 +113,7 @@ const VocabularyStaple: React.FC<{
                       onToggleForm={props.onToggleForm}
                       onHandleClickDelete={handleClickDelete}
                       editConfirmation={props.editConfirmation}
+                      onSetEditConfirmation={props.onSetEditConfirmation}
                     />
                   ))}
                 </ul>
