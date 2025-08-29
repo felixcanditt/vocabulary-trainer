@@ -114,6 +114,7 @@ function App() {
         userAction: 'delete',
         itemId: itemToBeDeleted.id,
         wasSuccessful: true,
+        stapleBeforeDeletion: itemToBeDeleted.currentStaple,
       });
     } catch (error) {
       console.error(`Deleting the item failed: ${(error as Error).message}`);

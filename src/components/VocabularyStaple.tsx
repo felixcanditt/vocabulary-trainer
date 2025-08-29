@@ -106,7 +106,9 @@ const VocabularyStaple: React.FC<{
                 aria-labelledby={`staple-${props.stapleNumber}-title`}
               >
                 {props.feedbackForUser &&
-                  props.feedbackForUser.userAction === 'delete' && (
+                  props.feedbackForUser.userAction === 'delete' &&
+                  props.feedbackForUser.stapleBeforeDeletion ===
+                    props.stapleNumber && (
                     <div
                       className={`feedback-for-user ${
                         props.feedbackForUser.wasSuccessful
@@ -141,7 +143,9 @@ const VocabularyStaple: React.FC<{
           <>
             <p>No items yet.</p>
             {props.feedbackForUser &&
-              props.feedbackForUser.userAction === 'delete' && (
+              props.feedbackForUser.userAction === 'delete' &&
+              props.feedbackForUser.stapleBeforeDeletion ===
+                props.stapleNumber && (
                 <div
                   className={`feedback-for-user ${
                     props.feedbackForUser.wasSuccessful ? 'success' : 'error'
