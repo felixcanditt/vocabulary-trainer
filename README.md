@@ -9,8 +9,8 @@ React | TypeScript | CSS | Hooks | WCAG | Jest & React Testing Library
 - Fully accessible: keyboard navigation, ARIA roles, visible focus indicators  
 - Timed feedback messages for add/edit/delete actions  
 - Modular, typed components with state managed via hooks
-- Persistent data with Local Storage
-- Responsive, user-friendly UI
+- Persistent data using Local Storage
+- Responsive and user-friendly UI
 - **Unit-tested** core flows (add, edit, delete)
 
 **Getting Started:**  
