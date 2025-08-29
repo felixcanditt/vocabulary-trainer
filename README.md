@@ -12,7 +12,7 @@ A lightweight vocabulary trainer with:
 - Responsive and user-friendly UI
 - **Unit-tested** core flows (add, edit, delete) with Jest & React Testing Library
 
-**Highlights:** Accessibility best practices, React state & hooks, TypeScript type safety, clean component architecture, smooth UX with immediate feedback, and tested functionality..
+**Highlights:** Accessibility best practices, React state & hooks, TypeScript type safety, clean component architecture, smooth UX with immediate feedback, and tested functionality.
 
 **Getting Started:**
 1. Clone the repo
