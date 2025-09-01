@@ -62,7 +62,7 @@ input:focus {
 .container {
   padding: 0 1rem;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1600px;
 }
 
 .me-1rem {
@@ -81,6 +81,7 @@ button {
   transition: background-color 0.2s, box-shadow 0.2s;
   min-width: 44px;
   min-height: 44px;
+  white-space: nowrap;
 }
 
 button:hover {
@@ -217,11 +218,32 @@ form .info-message {
 .staples-container {
   margin-top: 1.25rem;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .staple-box {
-  margin: 0 1.5rem 1.5rem 0;
+  margin-bottom: 1.5rem;
+  padding-right: 1.5rem;
+  width: 33.333333%;
+}
+
+@media (max-width: 1200px) {
+  .staples-container {
+    flex-wrap: wrap;
+  }
+
+  .staple-box {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .staples-container {
+    flex-direction: column;
+  }
+
+  .staple-box {
+    width: auto;
+  }
 }
 
 .start-show-buttons .button-yellow {
@@ -248,6 +270,8 @@ form .info-message {
 
 .staple-item .item-text {
   margin-right: 1.75rem;
+  hyphens: auto;
+  word-break: break-word;
 }
 
 /* Training */
