@@ -1,18 +1,19 @@
 # Vocabulary Trainer
 
-**React | TypeScript | CSS | Hooks | WCAG**
+**A modern, accessible React app for learning and managing vocabulary. Built with TypeScript, WCAG best practices, and fully unit-tested.**
 
-A lightweight vocabulary trainer demonstrating modern frontend skills:
+**Tech Stack & Highlights:**
+React | TypeScript | CSS | Hooks | WCAG | Jest & React Testing Library
 
 - Add, edit, delete, and review words with spaced repetition
-- Fully accessible: keyboard navigation, ARIA roles, visible focus indicators
-- Modular, reusable components with typed props and state management
-- Persistent data with Local Storage
+- Fully accessible: keyboard navigation, ARIA roles, visible focus indicators  
+- Timed feedback messages for add/edit/delete actions  
+- Modular, typed components with state managed via hooks
+- Persistent data using Local Storage
 - Responsive and user-friendly UI
+- **Unit-tested** core flows (add, edit, delete)
 
-**Highlights:** Accessibility best practices, React state & hooks, TypeScript type safety, and clean component architecture.
-
-**Getting Started:**
-1. Clone the repo
-2. npm install
-3. npm start
+**Getting Started:**  
+1. Clone the repo  
+2. `npm install`  
+3. `npm start`  
